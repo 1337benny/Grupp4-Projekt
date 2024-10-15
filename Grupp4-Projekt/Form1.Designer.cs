@@ -29,24 +29,36 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(280, 170);
+            label1.Location = new Point(320, 227);
             label1.Name = "label1";
-            label1.Size = new Size(205, 37);
+            label1.Size = new Size(255, 46);
             label1.TabIndex = 0;
             label1.Text = "Välkomna boys!";
             // 
+            // button1
+            // 
+            button1.Location = new Point(388, 347);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(button1);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -56,5 +68,6 @@
         #endregion
 
         private Label label1;
+        private Button button1;
     }
 }
