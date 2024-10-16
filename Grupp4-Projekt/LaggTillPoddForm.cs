@@ -58,6 +58,13 @@ namespace Grupp4_Projekt
 
                 tbAntalAvsnitt.Text = antalAvsnitt; //Sätter antalet avsnitt i textboxen
 
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    lbxAllaAvsnitt.Items.Add(item.Title.Text);
+                }
+
+
+
             }
 
         }

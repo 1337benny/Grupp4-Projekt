@@ -37,6 +37,8 @@
             tbFlodetsNamn = new TextBox();
             tbAntalAvsnitt = new TextBox();
             label1 = new Label();
+            lblAllaAvsnitt = new Label();
+            lbxAllaAvsnitt = new ListBox();
             SuspendLayout();
             // 
             // lblRubrik
@@ -117,11 +119,31 @@
             label1.TabIndex = 7;
             label1.Text = "Antal avsnitt";
             // 
+            // lblAllaAvsnitt
+            // 
+            lblAllaAvsnitt.AutoSize = true;
+            lblAllaAvsnitt.Location = new Point(807, 512);
+            lblAllaAvsnitt.Name = "lblAllaAvsnitt";
+            lblAllaAvsnitt.Size = new Size(65, 15);
+            lblAllaAvsnitt.TabIndex = 9;
+            lblAllaAvsnitt.Text = "Alla avsnitt";
+            // 
+            // lbxAllaAvsnitt
+            // 
+            lbxAllaAvsnitt.FormattingEnabled = true;
+            lbxAllaAvsnitt.ItemHeight = 15;
+            lbxAllaAvsnitt.Location = new Point(809, 541);
+            lbxAllaAvsnitt.Name = "lbxAllaAvsnitt";
+            lbxAllaAvsnitt.Size = new Size(362, 259);
+            lbxAllaAvsnitt.TabIndex = 10;
+            // 
             // LaggTillPoddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2098, 949);
+            Controls.Add(lbxAllaAvsnitt);
+            Controls.Add(lblAllaAvsnitt);
             Controls.Add(tbAntalAvsnitt);
             Controls.Add(label1);
             Controls.Add(tbFlodetsNamn);
@@ -148,5 +170,7 @@
         private TextBox tbFlodetsNamn;
         private TextBox tbAntalAvsnitt;
         private Label label1;
+        private Label lblAllaAvsnitt;
+        private ListBox lbxAllaAvsnitt;
     }
 }
