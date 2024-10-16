@@ -20,6 +20,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -30,6 +31,9 @@
         {
             label1 = new Label();
             button1 = new Button();
+            tbTest = new TextBox();
+            textBox1 = new TextBox();
+            tbTest2 = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -51,11 +55,35 @@
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
+            // tbTest
+            // 
+            tbTest.Location = new Point(291, 415);
+            tbTest.Name = "tbTest";
+            tbTest.Size = new Size(284, 27);
+            tbTest.TabIndex = 2;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(0, 0);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 3;
+            // 
+            // tbTest2
+            // 
+            tbTest2.Location = new Point(291, 470);
+            tbTest2.Name = "tbTest2";
+            tbTest2.Size = new Size(284, 27);
+            tbTest2.TabIndex = 4;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
+            Controls.Add(tbTest2);
+            Controls.Add(textBox1);
+            Controls.Add(tbTest);
             Controls.Add(button1);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
@@ -69,5 +97,8 @@
 
         private Label label1;
         private Button button1;
+        private TextBox tbTest;
+        private TextBox textBox1;
+        private TextBox tbTest2;
     }
 }
