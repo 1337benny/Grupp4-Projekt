@@ -32,7 +32,6 @@
             label1 = new Label();
             button1 = new Button();
             tbTest = new TextBox();
-            textBox1 = new TextBox();
             tbTest2 = new TextBox();
             SuspendLayout();
             // 
@@ -40,53 +39,48 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(320, 227);
+            label1.Location = new Point(280, 170);
             label1.Name = "label1";
-            label1.Size = new Size(255, 46);
+            label1.Size = new Size(205, 37);
             label1.TabIndex = 0;
             label1.Text = "Välkomna boys!";
             // 
             // button1
             // 
-            button1.Location = new Point(388, 347);
+            button1.Location = new Point(340, 260);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(82, 22);
             button1.TabIndex = 1;
-            button1.Text = "button1";
+            button1.Text = "till startsidan";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // tbTest
             // 
-            tbTest.Location = new Point(291, 415);
+            tbTest.Location = new Point(255, 311);
+            tbTest.Margin = new Padding(3, 2, 3, 2);
             tbTest.Name = "tbTest";
-            tbTest.Size = new Size(284, 27);
+            tbTest.Size = new Size(249, 23);
             tbTest.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(0, 0);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 3;
             // 
             // tbTest2
             // 
-            tbTest2.Location = new Point(291, 470);
+            tbTest2.Location = new Point(255, 352);
+            tbTest2.Margin = new Padding(3, 2, 3, 2);
             tbTest2.Name = "tbTest2";
-            tbTest2.Size = new Size(284, 27);
+            tbTest2.Size = new Size(249, 23);
             tbTest2.TabIndex = 4;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(tbTest2);
-            Controls.Add(textBox1);
             Controls.Add(tbTest);
             Controls.Add(button1);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -98,7 +92,6 @@
         private Label label1;
         private Button button1;
         private TextBox tbTest;
-        private TextBox textBox1;
         private TextBox tbTest2;
     }
 }

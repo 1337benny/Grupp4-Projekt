@@ -11,9 +11,17 @@ namespace Grupp4_Projekt
 
             Test enTest = new Test();
 
-          tbTest.Text = enTest.TestMetod();
+            tbTest.Text = enTest.TestMetod();
             Debug.WriteLine("Hej");
-            
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StartsidaForm startsida = new StartsidaForm();
+            startsida.ShowDialog();
+            this.Close();
         }
     }
 }
