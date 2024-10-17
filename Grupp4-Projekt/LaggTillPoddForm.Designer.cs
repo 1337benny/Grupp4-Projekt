@@ -39,6 +39,9 @@
             label1 = new Label();
             lblAllaAvsnitt = new Label();
             lbxAllaAvsnitt = new ListBox();
+            cbValjKategori = new ComboBox();
+            lblValjKategori = new Label();
+            btnSpara = new Button();
             SuspendLayout();
             // 
             // lblRubrik
@@ -90,7 +93,7 @@
             // lblFlodetsNamn
             // 
             lblFlodetsNamn.AutoSize = true;
-            lblFlodetsNamn.Location = new Point(804, 376);
+            lblFlodetsNamn.Location = new Point(818, 496);
             lblFlodetsNamn.Name = "lblFlodetsNamn";
             lblFlodetsNamn.Size = new Size(79, 15);
             lblFlodetsNamn.TabIndex = 5;
@@ -98,14 +101,16 @@
             // 
             // tbFlodetsNamn
             // 
-            tbFlodetsNamn.Location = new Point(804, 403);
+            tbFlodetsNamn.Enabled = false;
+            tbFlodetsNamn.Location = new Point(818, 514);
             tbFlodetsNamn.Name = "tbFlodetsNamn";
             tbFlodetsNamn.Size = new Size(367, 23);
             tbFlodetsNamn.TabIndex = 6;
             // 
             // tbAntalAvsnitt
             // 
-            tbAntalAvsnitt.Location = new Point(804, 470);
+            tbAntalAvsnitt.Enabled = false;
+            tbAntalAvsnitt.Location = new Point(818, 581);
             tbAntalAvsnitt.Name = "tbAntalAvsnitt";
             tbAntalAvsnitt.Size = new Size(188, 23);
             tbAntalAvsnitt.TabIndex = 8;
@@ -113,7 +118,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(804, 443);
+            label1.Location = new Point(818, 563);
             label1.Name = "label1";
             label1.Size = new Size(73, 15);
             label1.TabIndex = 7;
@@ -122,7 +127,7 @@
             // lblAllaAvsnitt
             // 
             lblAllaAvsnitt.AutoSize = true;
-            lblAllaAvsnitt.Location = new Point(807, 512);
+            lblAllaAvsnitt.Location = new Point(818, 634);
             lblAllaAvsnitt.Name = "lblAllaAvsnitt";
             lblAllaAvsnitt.Size = new Size(65, 15);
             lblAllaAvsnitt.TabIndex = 9;
@@ -132,16 +137,45 @@
             // 
             lbxAllaAvsnitt.FormattingEnabled = true;
             lbxAllaAvsnitt.ItemHeight = 15;
-            lbxAllaAvsnitt.Location = new Point(809, 541);
+            lbxAllaAvsnitt.Location = new Point(818, 652);
             lbxAllaAvsnitt.Name = "lbxAllaAvsnitt";
             lbxAllaAvsnitt.Size = new Size(362, 259);
             lbxAllaAvsnitt.TabIndex = 10;
+            // 
+            // cbValjKategori
+            // 
+            cbValjKategori.FormattingEnabled = true;
+            cbValjKategori.Location = new Point(1237, 514);
+            cbValjKategori.Name = "cbValjKategori";
+            cbValjKategori.Size = new Size(202, 23);
+            cbValjKategori.TabIndex = 11;
+            // 
+            // lblValjKategori
+            // 
+            lblValjKategori.AutoSize = true;
+            lblValjKategori.Location = new Point(1237, 496);
+            lblValjKategori.Name = "lblValjKategori";
+            lblValjKategori.Size = new Size(71, 15);
+            lblValjKategori.TabIndex = 12;
+            lblValjKategori.Text = "Välj kategori";
+            // 
+            // btnSpara
+            // 
+            btnSpara.Location = new Point(1257, 851);
+            btnSpara.Name = "btnSpara";
+            btnSpara.Size = new Size(182, 60);
+            btnSpara.TabIndex = 13;
+            btnSpara.Text = "Prenumerera";
+            btnSpara.UseVisualStyleBackColor = true;
             // 
             // LaggTillPoddForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2098, 949);
+            Controls.Add(btnSpara);
+            Controls.Add(lblValjKategori);
+            Controls.Add(cbValjKategori);
             Controls.Add(lbxAllaAvsnitt);
             Controls.Add(lblAllaAvsnitt);
             Controls.Add(tbAntalAvsnitt);
@@ -172,5 +206,8 @@
         private Label label1;
         private Label lblAllaAvsnitt;
         private ListBox lbxAllaAvsnitt;
+        private ComboBox cbValjKategori;
+        private Label lblValjKategori;
+        private Button btnSpara;
     }
 }

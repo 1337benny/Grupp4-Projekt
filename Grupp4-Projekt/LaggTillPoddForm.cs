@@ -58,15 +58,27 @@ namespace Grupp4_Projekt
 
                 tbAntalAvsnitt.Text = antalAvsnitt; //Sätter antalet avsnitt i textboxen
 
+                //Skapar en lista med alla avsnittens titlar
                 foreach (SyndicationItem item in feed.Items)
                 {
                     lbxAllaAvsnitt.Items.Add(item.Title.Text);
                 }
 
+                FyllComboboxMedKategorier();
+
 
 
             }
 
+        }
+
+        private void FyllComboboxMedKategorier()
+        {
+            cbValjKategori.Items.Add("Humor");
+            cbValjKategori.Items.Add("Nöje");
+            cbValjKategori.Items.Add("Fakta");
+            cbValjKategori.Items.Add("Dokumentär");
+            cbValjKategori.Items.Add("Sport");
         }
     }
 }
