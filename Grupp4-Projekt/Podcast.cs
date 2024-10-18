@@ -6,29 +6,24 @@ using System.Threading.Tasks;
 
 namespace Grupp4_Projekt
 {
-    internal class Podcast
+    [Serializable]
+    public class Podcast : Flode
     {
-        public Podcast(string namn, string kategori, string url, int antalAvsnitt, int id) {
 
-            Namn = namn;
-            Kategori = kategori;
-            Url = url;
-            AntalAvsnitt = antalAvsnitt;
-            Id = id;
-
+        //Parameterlös konstruktor
+        public Podcast() : base()  
+        {
+            AntalAvsnitt = 0;  
         }
 
-        public string Namn { get; set; }
+        //Konstruktor
+        public Podcast(int antalAvsnitt, string namn, string url) : base(namn, url) 
+        {
+            AntalAvsnitt = antalAvsnitt;
+        }
 
-        public string Kategori { get; set; }
-
-        public string Url { get; set; }
+       
 
         public int AntalAvsnitt { get; set; }
-
-        public int Id { get; set; }
-
-
-
     }
 }

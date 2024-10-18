@@ -15,6 +15,7 @@ namespace Grupp4_Projekt
         public StartsidaForm()
         {
             InitializeComponent();
+
         }
 
         private void btnLaggTillNyPodd_Click(object sender, EventArgs e)
@@ -23,6 +24,23 @@ namespace Grupp4_Projekt
             LaggTillPoddForm laggTillPodd = new LaggTillPoddForm();
             laggTillPodd.ShowDialog();
             this.Close();
+        }
+
+        private void visaAllaMinaPoddar()
+        {
+            GeneriskSerialiserare<Podcast> minaPoddar = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
+
+            List<Podcast> podcasts = minaPoddar.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista
+
+            foreach (Podcast podcast in podcasts)
+            {
+                lbMinaPoddar.Items.Add(podcast.Namn);  // Lägg till podcastens namn i listboxen
+            }
+        }
+
+        private void btnVisaPrenumerationer_Click(object sender, EventArgs e)
+        {
+            visaAllaMinaPoddar();
         }
     }
 }

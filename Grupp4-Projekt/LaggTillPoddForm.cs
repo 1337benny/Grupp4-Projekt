@@ -16,6 +16,9 @@ namespace Grupp4_Projekt
 {
     public partial class LaggTillPoddForm : Form
     {
+        private string podNamn;
+        private string podUrl;
+        private int podAntalAvsnitt;
         public LaggTillPoddForm()
         {
             InitializeComponent();
@@ -31,54 +34,93 @@ namespace Grupp4_Projekt
 
         private void btnHamtaUrl_Click(object sender, EventArgs e)
         {
-            if (tbUrl.Text == "" || tbUrl.Text == null)
+            lbAllaAvsnitt.Items.Clear(); //Nollställer listan från föregående sökning
+            rtbAvsnittInfo.Text = ""; //Nollställer avsnittrutan från föregående sökning
+
+            string sokUrl = tbUrl.Text; //lagrar url i en variabel string
+
+            XmlReader urlLasare = XmlReader.Create(sokUrl);
+            SyndicationFeed feed = SyndicationFeed.Load(urlLasare);
+
+            tbNamn.Text = feed.Title.Text; //sätter flödets titel i textboxen
+
+
+            //Räkna antalet avsnitt
+            int antalAvsnittInt = 0;
+            foreach (SyndicationItem item in feed.Items)
             {
-                //Vänligen fyll i URL
+                antalAvsnittInt++;
             }
-            else { 
-                string sokUrl = tbUrl.Text; //den url som användaren klistrat in
 
-                using XmlReader reader = XmlReader.Create(sokUrl);  //xmlreadern hämtar den url som användaren angav
-                 
-                SyndicationFeed feed = SyndicationFeed.Load(reader); //feed innehåller nu all xml text som vi kan använda
+            tbAntalAvsnitt.Text = antalAvsnittInt.ToString(); //Sätter antalet avsnitt i textboxen
 
-                string flodetsNamn = feed.Title.Text; //Hämtar ut titeln på feedet (poddens namn)
-                
-                tbFlodetsNamn.Text = flodetsNamn; // sätter poddens namn i textboxen
-
-
-                //Går igenom alla avsnitt i flödet för att räkna hur många det är
-                int antalAvsnittInt = 0;
-                foreach (SyndicationItem item in feed.Items)
-                {
-                    antalAvsnittInt++;
-                }
-
-                string antalAvsnitt = antalAvsnittInt.ToString(); //Gör om integern till string
-
-                tbAntalAvsnitt.Text = antalAvsnitt; //Sätter antalet avsnitt i textboxen
-
-                //Skapar en lista med alla avsnittens titlar
-                foreach (SyndicationItem item in feed.Items)
-                {
-                    lbxAllaAvsnitt.Items.Add(item.Title.Text);
-                }
-
-                FyllComboboxMedKategorier();
-
-
-
+            //Skriver ut titlarna på varje avsnitt
+            foreach (SyndicationItem item in feed.Items)
+            {
+                lbAllaAvsnitt.Items.Add(item.Title.Text);
             }
+
+            podAntalAvsnitt = antalAvsnittInt;
+            podNamn = feed.Title.Text;
+            podUrl = tbUrl.Text;
 
         }
 
-        private void FyllComboboxMedKategorier()
+        private void lbAllaAvsnitt_Click(object sender, EventArgs e)
         {
-            cbValjKategori.Items.Add("Humor");
-            cbValjKategori.Items.Add("Nöje");
-            cbValjKategori.Items.Add("Fakta");
-            cbValjKategori.Items.Add("Dokumentär");
-            cbValjKategori.Items.Add("Sport");
+            string valtAvsnittTitel = lbAllaAvsnitt.SelectedItem.ToString();
+            string sokUrl = tbUrl.Text;
+
+            XmlReader urlLasare = XmlReader.Create(sokUrl);
+            SyndicationFeed feed = SyndicationFeed.Load(urlLasare);
+
+            string avsnittBeskrivning = "";
+            foreach (SyndicationItem item in feed.Items)
+            {
+                if (item.Title.Text.Equals(valtAvsnittTitel))
+                {
+                    avsnittBeskrivning = item.Summary.Text;
+                }
+
+                rtbAvsnittInfo.Text = avsnittBeskrivning;
+            }
+
+
+
+
+        }
+
+        private void btnPrenumerera_Click(object sender, EventArgs e)
+        {
+            // Skapa en ny podcast
+            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl);
+
+            // Skapa en instans av den generiska serialiseraren
+            GeneriskSerialiserare<Podcast> enGeneriskSerialiserare = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
+
+            // Hämta den befintliga podcast-listan (eller en ny om filen inte finns)
+            List<Podcast> podcastLista;
+
+            try
+            {
+                podcastLista = enGeneriskSerialiserare.Deserialisera();
+            }
+            catch (FileNotFoundException)
+            {
+                // Om filen inte finns, skapa en ny lista
+                podcastLista = new List<Podcast>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
+                return;
+            }
+
+            // Lägg till den nya podcasten i listan
+            podcastLista.Add(nyPodcast);
+
+            // Serialisera listan tillbaka till XML-filen
+            enGeneriskSerialiserare.Serialisera(podcastLista);
         }
     }
 }

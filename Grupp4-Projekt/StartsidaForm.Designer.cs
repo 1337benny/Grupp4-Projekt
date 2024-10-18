@@ -33,6 +33,8 @@
             btnLaggTillNyPodd = new Button();
             btnHanteraMinaPoddar = new Button();
             btnHanteraKategorier = new Button();
+            lbMinaPoddar = new ListBox();
+            btnVisaPrenumerationer = new Button();
             SuspendLayout();
             // 
             // lblRubrik
@@ -64,7 +66,7 @@
             btnLaggTillNyPodd.TabIndex = 2;
             btnLaggTillNyPodd.Text = "Lägg till ny podd";
             btnLaggTillNyPodd.UseVisualStyleBackColor = true;
-            btnLaggTillNyPodd.Click += this.btnLaggTillNyPodd_Click;
+            btnLaggTillNyPodd.Click += btnLaggTillNyPodd_Click;
             // 
             // btnHanteraMinaPoddar
             // 
@@ -84,11 +86,32 @@
             btnHanteraKategorier.Text = "Hantera kategorier";
             btnHanteraKategorier.UseVisualStyleBackColor = true;
             // 
+            // lbMinaPoddar
+            // 
+            lbMinaPoddar.FormattingEnabled = true;
+            lbMinaPoddar.ItemHeight = 15;
+            lbMinaPoddar.Location = new Point(574, 129);
+            lbMinaPoddar.Name = "lbMinaPoddar";
+            lbMinaPoddar.Size = new Size(901, 574);
+            lbMinaPoddar.TabIndex = 5;
+            // 
+            // btnVisaPrenumerationer
+            // 
+            btnVisaPrenumerationer.Location = new Point(579, 714);
+            btnVisaPrenumerationer.Name = "btnVisaPrenumerationer";
+            btnVisaPrenumerationer.Size = new Size(328, 23);
+            btnVisaPrenumerationer.TabIndex = 6;
+            btnVisaPrenumerationer.Text = "Visa mina prenumerationer";
+            btnVisaPrenumerationer.UseVisualStyleBackColor = true;
+            btnVisaPrenumerationer.Click += btnVisaPrenumerationer_Click;
+            // 
             // StartsidaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2099, 949);
+            Controls.Add(btnVisaPrenumerationer);
+            Controls.Add(lbMinaPoddar);
             Controls.Add(btnHanteraKategorier);
             Controls.Add(btnHanteraMinaPoddar);
             Controls.Add(btnLaggTillNyPodd);
@@ -107,5 +130,7 @@
         private Button btnLaggTillNyPodd;
         private Button btnHanteraMinaPoddar;
         private Button btnHanteraKategorier;
+        private ListBox lbMinaPoddar;
+        private Button btnVisaPrenumerationer;
     }
 }
