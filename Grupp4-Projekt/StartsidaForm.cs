@@ -30,9 +30,9 @@ namespace Grupp4_Projekt
         {
             GeneriskSerialiserare<Podcast> minaPoddar = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
 
-            List<Podcast> podcasts = minaPoddar.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista
+            List<Podcast> podcasts = minaPoddar.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista in i en lokal variabel
 
-            foreach (Podcast podcast in podcasts)
+            foreach (Podcast podcast in podcasts) //Loopa igenom alla Podcast objekt i den lokala listan
             {
                 lbMinaPoddar.Items.Add(podcast.Namn);  // Lägg till podcastens namn i listboxen
             }

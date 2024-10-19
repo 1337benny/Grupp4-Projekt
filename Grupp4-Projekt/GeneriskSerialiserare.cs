@@ -18,19 +18,12 @@ namespace Grupp4_Projekt
 
         public string FilNamn { get; set; }
 
-        //public void SerialiseraEttObjekt(T objekt)
-        //{
-        //    XmlSerializer serialiserare = new XmlSerializer(typeof(T));
-        //    using (FileStream strom = new FileStream(FilNamn, FileMode.Append, FileAccess.Write))
-        //    {
-        //        serialiserare.Serialize(strom, objekt);
-        //    }
-        //}
+       
 
         public void Serialisera(List<T> enLista)
         {
             XmlSerializer serialiserare = new XmlSerializer(typeof(List<T>));
-            using (FileStream strom = new FileStream(FilNamn, FileMode.Create, FileAccess.Write)) // Ändrat till FileMode.Create
+            using (FileStream strom = new FileStream(FilNamn, FileMode.Create, FileAccess.Write)) 
             {
                 serialiserare.Serialize(strom, enLista);
             }
@@ -54,19 +47,5 @@ namespace Grupp4_Projekt
         }
 
 
-
-        //public List<T> DeserialiseraFranObjekt()
-        //{
-        //    List<T> nyLista = new List<T>();
-
-        //    XmlSerializer deserialiserare = new XmlSerializer(typeof(T));
-        //    using (FileStream strom = new FileStream(FilNamn, FileMode.Open, FileAccess.Read))
-        //    {
-        //        T objekt = (T)deserialiserare.Deserialize(strom);
-        //        nyLista.Add(objekt);
-        //    }
-
-        //    return nyLista;
-        //}
     }
 }
