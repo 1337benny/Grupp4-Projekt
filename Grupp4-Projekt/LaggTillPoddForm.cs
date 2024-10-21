@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using BLL;
 
 namespace Grupp4_Projekt
 {
@@ -22,7 +23,10 @@ namespace Grupp4_Projekt
         public LaggTillPoddForm()
         {
             InitializeComponent();
+            PodcastControllerObjekt = new PodcastController();
         }
+        private PodcastController PodcastControllerObjekt { get; set; }
+
 
         private void btnTillbaka_Click(object sender, EventArgs e)
         {
@@ -92,35 +96,7 @@ namespace Grupp4_Projekt
 
         private void btnPrenumerera_Click(object sender, EventArgs e)
         {
-            // Skapa en ny podcast
-            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl);
-
-            // Skapa en instans av den generiska serialiseraren
-            GeneriskSerialiserare<Podcast> enGeneriskSerialiserare = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
-
-            // Hämta den befintliga podcast-listan (eller en ny om filen inte finns)
-            List<Podcast> podcastLista;
-
-            try
-            {
-                podcastLista = enGeneriskSerialiserare.Deserialisera();
-            }
-            catch (FileNotFoundException)
-            {
-                // Om filen inte finns, skapa en ny lista
-                podcastLista = new List<Podcast>();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
-                return;
-            }
-
-            // Lägg till den nya podcasten i listan
-            podcastLista.Add(nyPodcast);
-
-            // Serialisera listan tillbaka till XML-filen
-            enGeneriskSerialiserare.Serialisera(podcastLista);
+            PodcastControllerObjekt.laggTillPodcast(podAntalAvsnitt, podNamn, podUrl);
         }
     }
 }

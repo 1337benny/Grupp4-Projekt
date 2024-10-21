@@ -48,17 +48,18 @@
             // 
             lblRubrik.AutoSize = true;
             lblRubrik.Font = new Font("Segoe UI", 29F);
-            lblRubrik.Location = new Point(820, 9);
+            lblRubrik.Location = new Point(184, 9);
             lblRubrik.Name = "lblRubrik";
-            lblRubrik.Size = new Size(357, 52);
+            lblRubrik.Size = new Size(451, 66);
             lblRubrik.TabIndex = 0;
             lblRubrik.Text = "Lägg till ny podcast";
             // 
             // btnTillbaka
             // 
-            btnTillbaka.Location = new Point(1977, 30);
+            btnTillbaka.Location = new Point(760, 65);
+            btnTillbaka.Margin = new Padding(3, 4, 3, 4);
             btnTillbaka.Name = "btnTillbaka";
-            btnTillbaka.Size = new Size(75, 23);
+            btnTillbaka.Size = new Size(86, 31);
             btnTillbaka.TabIndex = 1;
             btnTillbaka.Text = "Tillbaka";
             btnTillbaka.UseVisualStyleBackColor = true;
@@ -66,25 +67,27 @@
             // 
             // tbUrl
             // 
-            tbUrl.Location = new Point(818, 171);
+            tbUrl.Location = new Point(184, 137);
+            tbUrl.Margin = new Padding(3, 4, 3, 4);
             tbUrl.Name = "tbUrl";
-            tbUrl.Size = new Size(357, 23);
+            tbUrl.Size = new Size(407, 27);
             tbUrl.TabIndex = 2;
             // 
             // lblUrl
             // 
             lblUrl.AutoSize = true;
-            lblUrl.Location = new Point(929, 144);
+            lblUrl.Location = new Point(311, 101);
             lblUrl.Name = "lblUrl";
-            lblUrl.Size = new Size(118, 15);
+            lblUrl.Size = new Size(149, 20);
             lblUrl.TabIndex = 3;
             lblUrl.Text = "Klistra in flödets URL:";
             // 
             // btnHamtaUrl
             // 
-            btnHamtaUrl.Location = new Point(1181, 171);
+            btnHamtaUrl.Location = new Point(599, 137);
+            btnHamtaUrl.Margin = new Padding(3, 4, 3, 4);
             btnHamtaUrl.Name = "btnHamtaUrl";
-            btnHamtaUrl.Size = new Size(75, 23);
+            btnHamtaUrl.Size = new Size(86, 31);
             btnHamtaUrl.TabIndex = 4;
             btnHamtaUrl.Text = "Hämta URL";
             btnHamtaUrl.UseVisualStyleBackColor = true;
@@ -93,61 +96,65 @@
             // tbNamn
             // 
             tbNamn.Enabled = false;
-            tbNamn.Location = new Point(818, 406);
+            tbNamn.Location = new Point(50, 226);
+            tbNamn.Margin = new Padding(3, 4, 3, 4);
             tbNamn.Name = "tbNamn";
-            tbNamn.Size = new Size(357, 23);
+            tbNamn.Size = new Size(407, 27);
             tbNamn.TabIndex = 5;
             // 
             // lblNamn
             // 
             lblNamn.AutoSize = true;
-            lblNamn.Location = new Point(818, 388);
+            lblNamn.Location = new Point(50, 202);
             lblNamn.Name = "lblNamn";
-            lblNamn.Size = new Size(40, 15);
+            lblNamn.Size = new Size(49, 20);
             lblNamn.TabIndex = 6;
             lblNamn.Text = "Namn";
             // 
             // lblAvsnitt
             // 
             lblAvsnitt.AutoSize = true;
-            lblAvsnitt.Location = new Point(818, 437);
+            lblAvsnitt.Location = new Point(760, 198);
             lblAvsnitt.Name = "lblAvsnitt";
-            lblAvsnitt.Size = new Size(73, 15);
+            lblAvsnitt.Size = new Size(91, 20);
             lblAvsnitt.TabIndex = 8;
             lblAvsnitt.Text = "Antal avsnitt";
             // 
             // tbAntalAvsnitt
             // 
             tbAntalAvsnitt.Enabled = false;
-            tbAntalAvsnitt.Location = new Point(818, 455);
+            tbAntalAvsnitt.Location = new Point(762, 227);
+            tbAntalAvsnitt.Margin = new Padding(3, 4, 3, 4);
             tbAntalAvsnitt.Name = "tbAntalAvsnitt";
-            tbAntalAvsnitt.Size = new Size(73, 23);
+            tbAntalAvsnitt.Size = new Size(83, 27);
             tbAntalAvsnitt.TabIndex = 7;
             // 
             // lbAllaAvsnitt
             // 
             lbAllaAvsnitt.FormattingEnabled = true;
-            lbAllaAvsnitt.ItemHeight = 15;
-            lbAllaAvsnitt.Location = new Point(820, 498);
+            lbAllaAvsnitt.Location = new Point(50, 261);
+            lbAllaAvsnitt.Margin = new Padding(3, 4, 3, 4);
             lbAllaAvsnitt.Name = "lbAllaAvsnitt";
-            lbAllaAvsnitt.Size = new Size(355, 394);
+            lbAllaAvsnitt.Size = new Size(405, 384);
             lbAllaAvsnitt.TabIndex = 9;
             lbAllaAvsnitt.Click += lbAllaAvsnitt_Click;
             // 
             // rtbAvsnittInfo
             // 
-            rtbAvsnittInfo.Location = new Point(1192, 500);
+            rtbAvsnittInfo.Location = new Point(475, 261);
+            rtbAvsnittInfo.Margin = new Padding(3, 4, 3, 4);
             rtbAvsnittInfo.Name = "rtbAvsnittInfo";
-            rtbAvsnittInfo.Size = new Size(324, 222);
+            rtbAvsnittInfo.Size = new Size(370, 265);
             rtbAvsnittInfo.TabIndex = 10;
             rtbAvsnittInfo.Text = "";
             // 
             // btnPrenumerera
             // 
             btnPrenumerera.Font = new Font("Segoe UI", 19F);
-            btnPrenumerera.Location = new Point(1192, 812);
+            btnPrenumerera.Location = new Point(475, 534);
+            btnPrenumerera.Margin = new Padding(3, 4, 3, 4);
             btnPrenumerera.Name = "btnPrenumerera";
-            btnPrenumerera.Size = new Size(324, 80);
+            btnPrenumerera.Size = new Size(370, 113);
             btnPrenumerera.TabIndex = 11;
             btnPrenumerera.Text = "Prenumerera";
             btnPrenumerera.UseVisualStyleBackColor = true;
@@ -157,25 +164,26 @@
             // 
             cbValjKategori.FormattingEnabled = true;
             cbValjKategori.Items.AddRange(new object[] { "Humor", "Nöje", "Sport", "Dokumentär" });
-            cbValjKategori.Location = new Point(1192, 406);
+            cbValjKategori.Location = new Point(477, 226);
+            cbValjKategori.Margin = new Padding(3, 4, 3, 4);
             cbValjKategori.Name = "cbValjKategori";
-            cbValjKategori.Size = new Size(211, 23);
+            cbValjKategori.Size = new Size(241, 28);
             cbValjKategori.TabIndex = 12;
             // 
             // lblValjKategori
             // 
             lblValjKategori.AutoSize = true;
-            lblValjKategori.Location = new Point(1192, 388);
+            lblValjKategori.Location = new Point(477, 202);
             lblValjKategori.Name = "lblValjKategori";
-            lblValjKategori.Size = new Size(51, 15);
+            lblValjKategori.Size = new Size(66, 20);
             lblValjKategori.TabIndex = 13;
             lblValjKategori.Text = "Kategori";
             // 
             // LaggTillPoddForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2098, 949);
+            ClientSize = new Size(871, 717);
             Controls.Add(lblValjKategori);
             Controls.Add(cbValjKategori);
             Controls.Add(btnPrenumerera);
@@ -190,6 +198,7 @@
             Controls.Add(tbUrl);
             Controls.Add(btnTillbaka);
             Controls.Add(lblRubrik);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "LaggTillPoddForm";
             Text = "Form2";
             ResumeLayout(false);

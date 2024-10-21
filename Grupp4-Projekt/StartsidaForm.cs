@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using Models;
 
 namespace Grupp4_Projekt
 {
@@ -15,6 +17,7 @@ namespace Grupp4_Projekt
         public StartsidaForm()
         {
             InitializeComponent();
+            visaAllaMinaPoddar();
 
         }
 
@@ -28,19 +31,17 @@ namespace Grupp4_Projekt
 
         private void visaAllaMinaPoddar()
         {
-            GeneriskSerialiserare<Podcast> minaPoddar = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
+            PodcastController podcastController = new PodcastController();
 
-            List<Podcast> podcasts = minaPoddar.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista in i en lokal variabel
-
+            List<Podcast> podcasts = podcastController.visaMinaPoddar();
             foreach (Podcast podcast in podcasts) //Loopa igenom alla Podcast objekt i den lokala listan
             {
                 lbMinaPoddar.Items.Add(podcast.Namn);  // Lägg till podcastens namn i listboxen
             }
+
+
         }
 
-        private void btnVisaPrenumerationer_Click(object sender, EventArgs e)
-        {
-            visaAllaMinaPoddar();
-        }
+        
     }
 }

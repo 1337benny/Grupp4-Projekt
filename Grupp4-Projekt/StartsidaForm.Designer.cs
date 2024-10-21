@@ -34,16 +34,15 @@
             btnHanteraMinaPoddar = new Button();
             btnHanteraKategorier = new Button();
             lbMinaPoddar = new ListBox();
-            btnVisaPrenumerationer = new Button();
             SuspendLayout();
             // 
             // lblRubrik
             // 
             lblRubrik.AutoSize = true;
             lblRubrik.Font = new Font("Segoe UI", 29F);
-            lblRubrik.Location = new Point(870, 9);
+            lblRubrik.Location = new Point(205, 9);
             lblRubrik.Name = "lblRubrik";
-            lblRubrik.Size = new Size(271, 52);
+            lblRubrik.Size = new Size(340, 66);
             lblRubrik.TabIndex = 0;
             lblRubrik.Text = "Mina Podcasts";
             // 
@@ -52,17 +51,18 @@
             lblMeny.AutoSize = true;
             lblMeny.FlatStyle = FlatStyle.Flat;
             lblMeny.Font = new Font("Segoe UI", 19F);
-            lblMeny.Location = new Point(2007, 74);
+            lblMeny.Location = new Point(952, 40);
             lblMeny.Name = "lblMeny";
-            lblMeny.Size = new Size(80, 36);
+            lblMeny.Size = new Size(99, 45);
             lblMeny.TabIndex = 1;
             lblMeny.Text = "Meny";
             // 
             // btnLaggTillNyPodd
             // 
-            btnLaggTillNyPodd.Location = new Point(1942, 129);
+            btnLaggTillNyPodd.Location = new Point(891, 109);
+            btnLaggTillNyPodd.Margin = new Padding(3, 4, 3, 4);
             btnLaggTillNyPodd.Name = "btnLaggTillNyPodd";
-            btnLaggTillNyPodd.Size = new Size(140, 23);
+            btnLaggTillNyPodd.Size = new Size(160, 31);
             btnLaggTillNyPodd.TabIndex = 2;
             btnLaggTillNyPodd.Text = "Lägg till ny podd";
             btnLaggTillNyPodd.UseVisualStyleBackColor = true;
@@ -70,18 +70,20 @@
             // 
             // btnHanteraMinaPoddar
             // 
-            btnHanteraMinaPoddar.Location = new Point(1942, 174);
+            btnHanteraMinaPoddar.Location = new Point(891, 169);
+            btnHanteraMinaPoddar.Margin = new Padding(3, 4, 3, 4);
             btnHanteraMinaPoddar.Name = "btnHanteraMinaPoddar";
-            btnHanteraMinaPoddar.Size = new Size(140, 23);
+            btnHanteraMinaPoddar.Size = new Size(160, 31);
             btnHanteraMinaPoddar.TabIndex = 3;
             btnHanteraMinaPoddar.Text = "Hantera mina poddar";
             btnHanteraMinaPoddar.UseVisualStyleBackColor = true;
             // 
             // btnHanteraKategorier
             // 
-            btnHanteraKategorier.Location = new Point(1942, 218);
+            btnHanteraKategorier.Location = new Point(891, 228);
+            btnHanteraKategorier.Margin = new Padding(3, 4, 3, 4);
             btnHanteraKategorier.Name = "btnHanteraKategorier";
-            btnHanteraKategorier.Size = new Size(140, 23);
+            btnHanteraKategorier.Size = new Size(160, 31);
             btnHanteraKategorier.TabIndex = 4;
             btnHanteraKategorier.Text = "Hantera kategorier";
             btnHanteraKategorier.UseVisualStyleBackColor = true;
@@ -89,34 +91,24 @@
             // lbMinaPoddar
             // 
             lbMinaPoddar.FormattingEnabled = true;
-            lbMinaPoddar.ItemHeight = 15;
-            lbMinaPoddar.Location = new Point(574, 129);
+            lbMinaPoddar.Location = new Point(33, 109);
+            lbMinaPoddar.Margin = new Padding(3, 4, 3, 4);
             lbMinaPoddar.Name = "lbMinaPoddar";
-            lbMinaPoddar.Size = new Size(901, 574);
+            lbMinaPoddar.Size = new Size(693, 504);
             lbMinaPoddar.TabIndex = 5;
-            // 
-            // btnVisaPrenumerationer
-            // 
-            btnVisaPrenumerationer.Location = new Point(579, 714);
-            btnVisaPrenumerationer.Name = "btnVisaPrenumerationer";
-            btnVisaPrenumerationer.Size = new Size(328, 23);
-            btnVisaPrenumerationer.TabIndex = 6;
-            btnVisaPrenumerationer.Text = "Visa mina prenumerationer";
-            btnVisaPrenumerationer.UseVisualStyleBackColor = true;
-            btnVisaPrenumerationer.Click += btnVisaPrenumerationer_Click;
             // 
             // StartsidaForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2099, 949);
-            Controls.Add(btnVisaPrenumerationer);
+            ClientSize = new Size(1147, 647);
             Controls.Add(lbMinaPoddar);
             Controls.Add(btnHanteraKategorier);
             Controls.Add(btnHanteraMinaPoddar);
             Controls.Add(btnLaggTillNyPodd);
             Controls.Add(lblMeny);
             Controls.Add(lblRubrik);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "StartsidaForm";
             Text = "Form2";
             ResumeLayout(false);
@@ -131,6 +123,5 @@
         private Button btnHanteraMinaPoddar;
         private Button btnHanteraKategorier;
         private ListBox lbMinaPoddar;
-        private Button btnVisaPrenumerationer;
     }
 }

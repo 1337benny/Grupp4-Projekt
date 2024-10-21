@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Grupp4_Projekt
+namespace Models
 {
     [Serializable]
     public class Podcast : Flode
