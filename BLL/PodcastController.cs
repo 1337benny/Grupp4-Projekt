@@ -14,10 +14,10 @@ namespace BLL
         
         }
 
-        public void laggTillPodcast(int podAntalAvsnitt, string podNamn, string podUrl)
+        public void laggTillPodcast(int podAntalAvsnitt, string podNamn, string podUrl, string podEgetNamn)
         {
             // Skapa en ny podcast
-            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl);
+            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl, podEgetNamn);
 
             // Skapa en instans av den generiska serialiseraren
             GeneriskSerialiserare<Podcast> enGeneriskSerialiserare = new GeneriskSerialiserare<Podcast>("podcastLista.xml");

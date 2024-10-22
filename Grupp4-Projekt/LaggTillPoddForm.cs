@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using BLL;
+using DAL;
 
 namespace Grupp4_Projekt
 {
@@ -20,20 +21,27 @@ namespace Grupp4_Projekt
         private string podNamn;
         private string podUrl;
         private int podAntalAvsnitt;
+        private string podEgetNamn;
         public LaggTillPoddForm()
         {
             InitializeComponent();
+            this.CenterToScreen();
             PodcastControllerObjekt = new PodcastController();
         }
         private PodcastController PodcastControllerObjekt { get; set; }
 
-
-        private void btnTillbaka_Click(object sender, EventArgs e)
+        public void tillStartsidan()
         {
             this.Hide();
             StartsidaForm startsida = new StartsidaForm();
             startsida.ShowDialog();
             this.Close();
+        }
+
+
+        private void btnTillbaka_Click(object sender, EventArgs e)
+        {
+            tillStartsidan();
         }
 
         private void btnHamtaUrl_Click(object sender, EventArgs e)
@@ -43,8 +51,9 @@ namespace Grupp4_Projekt
 
             string sokUrl = tbUrl.Text; //lagrar url i en variabel string
 
-            XmlReader urlLasare = XmlReader.Create(sokUrl);
-            SyndicationFeed feed = SyndicationFeed.Load(urlLasare);
+            
+            SyndicationFeed feed = XmlHanterare.hamtaUrl(sokUrl);
+            
 
             tbNamn.Text = feed.Title.Text; //sätter flödets titel i textboxen
 
@@ -73,10 +82,10 @@ namespace Grupp4_Projekt
         private void lbAllaAvsnitt_Click(object sender, EventArgs e)
         {
             string valtAvsnittTitel = lbAllaAvsnitt.SelectedItem.ToString();
-            string sokUrl = tbUrl.Text;
+            string sokUrl = podUrl;
 
-            XmlReader urlLasare = XmlReader.Create(sokUrl);
-            SyndicationFeed feed = SyndicationFeed.Load(urlLasare);
+            //XmlReader urlLasare = XmlReader.Create(sokUrl);
+            SyndicationFeed feed = XmlHanterare.hamtaUrl(sokUrl);
 
             string avsnittBeskrivning = "";
             foreach (SyndicationItem item in feed.Items)
@@ -96,7 +105,11 @@ namespace Grupp4_Projekt
 
         private void btnPrenumerera_Click(object sender, EventArgs e)
         {
-            PodcastControllerObjekt.laggTillPodcast(podAntalAvsnitt, podNamn, podUrl);
+            podEgetNamn = tbEgetNamn.Text;
+
+            PodcastControllerObjekt.laggTillPodcast(podAntalAvsnitt, podNamn, podUrl, podEgetNamn);
+
+            tillStartsidan();
         }
     }
 }

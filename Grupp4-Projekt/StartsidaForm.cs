@@ -17,6 +17,7 @@ namespace Grupp4_Projekt
         public StartsidaForm()
         {
             InitializeComponent();
+            this.CenterToScreen();
             visaAllaMinaPoddar();
 
         }
@@ -31,12 +32,16 @@ namespace Grupp4_Projekt
 
         private void visaAllaMinaPoddar()
         {
+            
+
             PodcastController podcastController = new PodcastController();
 
             List<Podcast> podcasts = podcastController.visaMinaPoddar();
             foreach (Podcast podcast in podcasts) //Loopa igenom alla Podcast objekt i den lokala listan
             {
-                lbMinaPoddar.Items.Add(podcast.Namn);  // Lägg till podcastens namn i listboxen
+                string[] podInfo = { podcast.Namn, podcast.Titel, "humor", "100" };
+                ListViewItem item = new ListViewItem(podInfo);
+                lvMinaPoddar.Items.Add(item);
             }
 
 

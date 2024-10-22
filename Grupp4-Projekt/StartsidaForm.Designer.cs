@@ -33,16 +33,20 @@
             btnLaggTillNyPodd = new Button();
             btnHanteraMinaPoddar = new Button();
             btnHanteraKategorier = new Button();
-            lbMinaPoddar = new ListBox();
+            lvMinaPoddar = new ListView();
+            Namn = new ColumnHeader();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
             SuspendLayout();
             // 
             // lblRubrik
             // 
             lblRubrik.AutoSize = true;
             lblRubrik.Font = new Font("Segoe UI", 29F);
-            lblRubrik.Location = new Point(205, 9);
+            lblRubrik.Location = new Point(179, 7);
             lblRubrik.Name = "lblRubrik";
-            lblRubrik.Size = new Size(340, 66);
+            lblRubrik.Size = new Size(271, 52);
             lblRubrik.TabIndex = 0;
             lblRubrik.Text = "Mina Podcasts";
             // 
@@ -51,18 +55,17 @@
             lblMeny.AutoSize = true;
             lblMeny.FlatStyle = FlatStyle.Flat;
             lblMeny.Font = new Font("Segoe UI", 19F);
-            lblMeny.Location = new Point(952, 40);
+            lblMeny.Location = new Point(833, 30);
             lblMeny.Name = "lblMeny";
-            lblMeny.Size = new Size(99, 45);
+            lblMeny.Size = new Size(80, 36);
             lblMeny.TabIndex = 1;
             lblMeny.Text = "Meny";
             // 
             // btnLaggTillNyPodd
             // 
-            btnLaggTillNyPodd.Location = new Point(891, 109);
-            btnLaggTillNyPodd.Margin = new Padding(3, 4, 3, 4);
+            btnLaggTillNyPodd.Location = new Point(780, 82);
             btnLaggTillNyPodd.Name = "btnLaggTillNyPodd";
-            btnLaggTillNyPodd.Size = new Size(160, 31);
+            btnLaggTillNyPodd.Size = new Size(140, 23);
             btnLaggTillNyPodd.TabIndex = 2;
             btnLaggTillNyPodd.Text = "Lägg till ny podd";
             btnLaggTillNyPodd.UseVisualStyleBackColor = true;
@@ -70,45 +73,67 @@
             // 
             // btnHanteraMinaPoddar
             // 
-            btnHanteraMinaPoddar.Location = new Point(891, 169);
-            btnHanteraMinaPoddar.Margin = new Padding(3, 4, 3, 4);
+            btnHanteraMinaPoddar.Location = new Point(780, 127);
             btnHanteraMinaPoddar.Name = "btnHanteraMinaPoddar";
-            btnHanteraMinaPoddar.Size = new Size(160, 31);
+            btnHanteraMinaPoddar.Size = new Size(140, 23);
             btnHanteraMinaPoddar.TabIndex = 3;
             btnHanteraMinaPoddar.Text = "Hantera mina poddar";
             btnHanteraMinaPoddar.UseVisualStyleBackColor = true;
             // 
             // btnHanteraKategorier
             // 
-            btnHanteraKategorier.Location = new Point(891, 228);
-            btnHanteraKategorier.Margin = new Padding(3, 4, 3, 4);
+            btnHanteraKategorier.Location = new Point(780, 171);
             btnHanteraKategorier.Name = "btnHanteraKategorier";
-            btnHanteraKategorier.Size = new Size(160, 31);
+            btnHanteraKategorier.Size = new Size(140, 23);
             btnHanteraKategorier.TabIndex = 4;
             btnHanteraKategorier.Text = "Hantera kategorier";
             btnHanteraKategorier.UseVisualStyleBackColor = true;
             // 
-            // lbMinaPoddar
+            // lvMinaPoddar
             // 
-            lbMinaPoddar.FormattingEnabled = true;
-            lbMinaPoddar.Location = new Point(33, 109);
-            lbMinaPoddar.Margin = new Padding(3, 4, 3, 4);
-            lbMinaPoddar.Name = "lbMinaPoddar";
-            lbMinaPoddar.Size = new Size(693, 504);
-            lbMinaPoddar.TabIndex = 5;
+            lvMinaPoddar.Columns.AddRange(new ColumnHeader[] { Namn, columnHeader1, columnHeader2, columnHeader3 });
+            lvMinaPoddar.FullRowSelect = true;
+            lvMinaPoddar.GridLines = true;
+            lvMinaPoddar.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lvMinaPoddar.Location = new Point(12, 82);
+            lvMinaPoddar.MultiSelect = false;
+            lvMinaPoddar.Name = "lvMinaPoddar";
+            lvMinaPoddar.Size = new Size(584, 290);
+            lvMinaPoddar.TabIndex = 7;
+            lvMinaPoddar.UseCompatibleStateImageBehavior = false;
+            lvMinaPoddar.View = View.Details;
+            // 
+            // Namn
+            // 
+            Namn.Text = "Namn";
+            Namn.Width = 160;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Titel";
+            columnHeader1.Width = 160;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Kategori";
+            columnHeader2.Width = 160;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Antal avsnitt";
+            columnHeader3.Width = 100;
             // 
             // StartsidaForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1147, 647);
-            Controls.Add(lbMinaPoddar);
+            ClientSize = new Size(1004, 485);
+            Controls.Add(lvMinaPoddar);
             Controls.Add(btnHanteraKategorier);
             Controls.Add(btnHanteraMinaPoddar);
             Controls.Add(btnLaggTillNyPodd);
             Controls.Add(lblMeny);
             Controls.Add(lblRubrik);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "StartsidaForm";
             Text = "Form2";
             ResumeLayout(false);
@@ -122,6 +147,10 @@
         private Button btnLaggTillNyPodd;
         private Button btnHanteraMinaPoddar;
         private Button btnHanteraKategorier;
-        private ListBox lbMinaPoddar;
+        private ListView lvMinaPoddar;
+        private ColumnHeader Namn;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
     }
 }

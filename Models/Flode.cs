@@ -10,17 +10,20 @@ namespace Models
     {
         public Flode()
         {
-            Namn = "Okänt namn";
+            Titel = "Okänt namn";
             Url = "Okänd URL";
         }
-        public Flode(string namn, string url)
+        public Flode(string titel, string url, string namn)
         {
-            Namn = namn;
+            Titel = titel;
             Url = url;
+            Namn = namn;
         }
 
-        public string Namn { get; set; }
+        public string Titel { get; set; }
         public string Url { get; set; }
+
+        public string Namn { get; set; }
 
     }
 }

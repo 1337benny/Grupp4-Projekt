@@ -17,7 +17,7 @@ namespace Models
         }
 
         //Konstruktor
-        public Podcast(int antalAvsnitt, string namn, string url) : base(namn, url) 
+        public Podcast(int antalAvsnitt, string titel, string url, string namn) : base(titel, url, namn) 
         {
             AntalAvsnitt = antalAvsnitt;
         }
