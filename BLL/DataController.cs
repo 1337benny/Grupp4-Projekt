@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class PodcastController
+    public class DataController
     {
-        public PodcastController() { 
+        public DataController() { 
         
         }
 
@@ -56,6 +56,37 @@ namespace BLL
 
             
             return podcasts;
+        }
+
+        public void laggTillKategori(string kategoriNamn)
+        {
+            Kategori kategori = new Kategori(kategoriNamn);
+
+            GeneriskSerialiserare<Kategori> enGeneriskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
+
+            List<Kategori> kategoriLista;
+
+            try
+            {
+                kategoriLista = enGeneriskSerialiserare.Deserialisera();
+            }
+            catch (FileNotFoundException)
+            {
+                // Om filen inte finns, skapa en ny lista
+                kategoriLista = new List<Kategori>();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
+            // Lägg till den nya podcasten i listan
+            kategoriLista.Add(kategori);
+
+            // Serialisera listan tillbaka till XML-filen
+            enGeneriskSerialiserare.Serialisera(kategoriLista);
         }
     }
 }

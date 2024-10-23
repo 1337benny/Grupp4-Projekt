@@ -26,9 +26,9 @@ namespace Grupp4_Projekt
         {
             InitializeComponent();
             this.CenterToScreen();
-            PodcastControllerObjekt = new PodcastController();
+            PodcastControllerObjekt = new DataController();
         }
-        private PodcastController PodcastControllerObjekt { get; set; }
+        private DataController PodcastControllerObjekt { get; set; }
 
         public void tillStartsidan()
         {

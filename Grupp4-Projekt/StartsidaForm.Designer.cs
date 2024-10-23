@@ -88,6 +88,7 @@
             btnHanteraKategorier.TabIndex = 4;
             btnHanteraKategorier.Text = "Hantera kategorier";
             btnHanteraKategorier.UseVisualStyleBackColor = true;
+            btnHanteraKategorier.Click += btnHanteraKategorier_Click;
             // 
             // lvMinaPoddar
             // 

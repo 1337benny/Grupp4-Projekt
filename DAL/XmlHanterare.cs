@@ -10,9 +10,7 @@ namespace DAL
 {
     public static class XmlHanterare
     {
-        //public XmlHanterare() {
-            
-        //}
+        
 
        
 

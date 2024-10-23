@@ -32,9 +32,9 @@ namespace Grupp4_Projekt
 
         private void visaAllaMinaPoddar()
         {
-            
 
-            PodcastController podcastController = new PodcastController();
+
+            DataController podcastController = new DataController();
 
             List<Podcast> podcasts = podcastController.visaMinaPoddar();
             foreach (Podcast podcast in podcasts) //Loopa igenom alla Podcast objekt i den lokala listan
@@ -47,6 +47,12 @@ namespace Grupp4_Projekt
 
         }
 
-        
+        private void btnHanteraKategorier_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HanteraKategorierForm hanteraKategorier = new HanteraKategorierForm();
+            hanteraKategorier.ShowDialog();
+            this.Close();
+        }
     }
 }
