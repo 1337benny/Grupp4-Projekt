@@ -38,6 +38,7 @@
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
+            btnAvsluta = new Button();
             SuspendLayout();
             // 
             // lblRubrik
@@ -96,7 +97,7 @@
             lvMinaPoddar.FullRowSelect = true;
             lvMinaPoddar.GridLines = true;
             lvMinaPoddar.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            lvMinaPoddar.Location = new Point(12, 82);
+            lvMinaPoddar.Location = new Point(12, 112);
             lvMinaPoddar.MultiSelect = false;
             lvMinaPoddar.Name = "lvMinaPoddar";
             lvMinaPoddar.Size = new Size(584, 290);
@@ -124,11 +125,22 @@
             columnHeader3.Text = "Antal avsnitt";
             columnHeader3.Width = 100;
             // 
+            // btnAvsluta
+            // 
+            btnAvsluta.Location = new Point(12, 12);
+            btnAvsluta.Name = "btnAvsluta";
+            btnAvsluta.Size = new Size(75, 23);
+            btnAvsluta.TabIndex = 8;
+            btnAvsluta.Text = "Avsluta";
+            btnAvsluta.UseVisualStyleBackColor = true;
+            btnAvsluta.Click += btnAvsluta_Click;
+            // 
             // StartsidaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1004, 485);
+            Controls.Add(btnAvsluta);
             Controls.Add(lvMinaPoddar);
             Controls.Add(btnHanteraKategorier);
             Controls.Add(btnHanteraMinaPoddar);
@@ -153,5 +165,6 @@
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
+        private Button btnAvsluta;
     }
 }

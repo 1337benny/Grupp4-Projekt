@@ -12,14 +12,26 @@ using Models;
 
 namespace Grupp4_Projekt
 {
-    public partial class StartsidaForm : Form
+    public partial class StartsidaForm : Form, IFormInterface
     {
         public StartsidaForm()
         {
             InitializeComponent();
-            this.CenterToScreen();
+            centreraForm();
             visaAllaMinaPoddar();
+            skapaStandardKategoriXml();
 
+
+        }
+
+        public void centreraForm()
+        {
+            this.CenterToScreen();
+        }
+
+        public void tillbakaKnapp()
+        {
+            this.Close();
         }
 
         private void btnLaggTillNyPodd_Click(object sender, EventArgs e)
@@ -30,18 +42,29 @@ namespace Grupp4_Projekt
             this.Close();
         }
 
+
+
         private void visaAllaMinaPoddar()
         {
 
 
             DataController podcastController = new DataController();
 
-            List<Podcast> podcasts = podcastController.visaMinaPoddar();
-            foreach (Podcast podcast in podcasts) //Loopa igenom alla Podcast objekt i den lokala listan
+            List<Kategori> kategorier = podcastController.visaMinaKategorier();
+            foreach (Kategori kategori in kategorier) //Loopa igenom alla Podcast objekt i den lokala listan
             {
-                string[] podInfo = { podcast.Namn, podcast.Titel, "humor", "100" };
-                ListViewItem item = new ListViewItem(podInfo);
-                lvMinaPoddar.Items.Add(item);
+
+
+                List<Podcast> kategorinsPoddar = kategori.KategorinsPodcasts;
+
+                foreach (Podcast podcast in kategorinsPoddar)
+                {
+                    string[] podInfo = { podcast.Namn, podcast.Titel, kategori.Namn, podcast.AntalAvsnitt.ToString() };
+                    ListViewItem item = new ListViewItem(podInfo);
+                    lvMinaPoddar.Items.Add(item);
+                }
+
+
             }
 
 
@@ -53,6 +76,25 @@ namespace Grupp4_Projekt
             HanteraKategorierForm hanteraKategorier = new HanteraKategorierForm();
             hanteraKategorier.ShowDialog();
             this.Close();
+        }
+
+        private void skapaStandardKategoriXml()
+        {
+            DataController dataController = new DataController();
+
+            dataController.laggTillKategori("Humor");
+            dataController.laggTillKategori("Dokumentär");
+            dataController.laggTillKategori("Nöje");
+            dataController.laggTillKategori("Sport");
+            dataController.laggTillKategori("Fakta");
+            dataController.laggTillKategori("Utbildning");
+            dataController.laggTillKategori("Nyheter");
+            dataController.laggTillKategori("Fantasi");
+        }
+
+        private void btnAvsluta_Click(object sender, EventArgs e)
+        {
+            tillbakaKnapp();
         }
     }
 }

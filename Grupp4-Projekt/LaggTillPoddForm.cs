@@ -13,6 +13,7 @@ using System.Xml;
 using System.Xml.Linq;
 using BLL;
 using DAL;
+using Models;
 
 namespace Grupp4_Projekt
 {
@@ -26,9 +27,11 @@ namespace Grupp4_Projekt
         {
             InitializeComponent();
             this.CenterToScreen();
-            PodcastControllerObjekt = new DataController();
+            DataControllerObjekt = new DataController();
+
+            fyllComboboxKategorier();
         }
-        private DataController PodcastControllerObjekt { get; set; }
+        private DataController DataControllerObjekt { get; set; }
 
         public void tillStartsidan()
         {
@@ -51,9 +54,9 @@ namespace Grupp4_Projekt
 
             string sokUrl = tbUrl.Text; //lagrar url i en variabel string
 
-            
+
             SyndicationFeed feed = XmlHanterare.hamtaUrl(sokUrl);
-            
+
 
             tbNamn.Text = feed.Title.Text; //sätter flödets titel i textboxen
 
@@ -106,10 +109,27 @@ namespace Grupp4_Projekt
         private void btnPrenumerera_Click(object sender, EventArgs e)
         {
             podEgetNamn = tbEgetNamn.Text;
+            string kategori = cbValjKategori.SelectedItem.ToString();
+            
+            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl, podEgetNamn);
 
-            PodcastControllerObjekt.laggTillPodcast(podAntalAvsnitt, podNamn, podUrl, podEgetNamn);
+            //DataControllerObjekt.laggTillPodcast(nyPodcast);
+
+            DataControllerObjekt.laggTillPodcastIKategori(nyPodcast, kategori);
 
             tillStartsidan();
+        }
+
+        private void fyllComboboxKategorier()
+        {
+            List<Kategori> kategoriLista = DataControllerObjekt.visaMinaKategorier();
+
+            foreach (Kategori kategori in kategoriLista)
+            {
+                cbValjKategori.Items.Add(kategori.Namn);
+            }
+
+            cbValjKategori.SelectedIndex = 0;
         }
     }
 }

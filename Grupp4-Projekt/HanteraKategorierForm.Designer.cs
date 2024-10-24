@@ -44,6 +44,8 @@
             label4 = new Label();
             btnTillbaka = new Button();
             panel2 = new Panel();
+            namn = new ColumnHeader();
+            antalPoddar = new ColumnHeader();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -70,11 +72,13 @@
             // 
             // lvMinaPoddar
             // 
+            lvMinaPoddar.Columns.AddRange(new ColumnHeader[] { namn, antalPoddar });
             lvMinaPoddar.Location = new Point(55, 107);
             lvMinaPoddar.Name = "lvMinaPoddar";
             lvMinaPoddar.Size = new Size(215, 312);
             lvMinaPoddar.TabIndex = 4;
             lvMinaPoddar.UseCompatibleStateImageBehavior = false;
+            lvMinaPoddar.View = View.Details;
             // 
             // lbPoddarIKategorin
             // 
@@ -198,6 +202,16 @@
             panel2.Size = new Size(547, 380);
             panel2.TabIndex = 13;
             // 
+            // namn
+            // 
+            namn.Text = "Namn";
+            namn.Width = 130;
+            // 
+            // antalPoddar
+            // 
+            antalPoddar.Text = "Antal poddar";
+            antalPoddar.Width = 90;
+            // 
             // HanteraKategorierForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -240,5 +254,7 @@
         private Button btnSparaNyKategori;
         private Button btnTillbaka;
         private Panel panel2;
+        private ColumnHeader namn;
+        private ColumnHeader antalPoddar;
     }
 }

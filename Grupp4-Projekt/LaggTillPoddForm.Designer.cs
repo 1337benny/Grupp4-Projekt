@@ -44,13 +44,15 @@
             lblValjKategori = new Label();
             lbEgetNamn = new Label();
             tbEgetNamn = new TextBox();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblRubrik
             // 
             lblRubrik.AutoSize = true;
             lblRubrik.Font = new Font("Segoe UI", 29F);
-            lblRubrik.Location = new Point(161, 7);
+            lblRubrik.Location = new Point(162, 10);
             lblRubrik.Name = "lblRubrik";
             lblRubrik.Size = new Size(357, 52);
             lblRubrik.TabIndex = 0;
@@ -58,7 +60,7 @@
             // 
             // btnTillbaka
             // 
-            btnTillbaka.Location = new Point(665, 49);
+            btnTillbaka.Location = new Point(666, 39);
             btnTillbaka.Name = "btnTillbaka";
             btnTillbaka.Size = new Size(75, 23);
             btnTillbaka.TabIndex = 1;
@@ -76,15 +78,16 @@
             // lblUrl
             // 
             lblUrl.AutoSize = true;
-            lblUrl.Location = new Point(272, 76);
+            lblUrl.Font = new Font("Segoe UI", 13F);
+            lblUrl.Location = new Point(258, 76);
             lblUrl.Name = "lblUrl";
-            lblUrl.Size = new Size(118, 15);
+            lblUrl.Size = new Size(178, 25);
             lblUrl.TabIndex = 3;
             lblUrl.Text = "Klistra in flödets URL:";
             // 
             // btnHamtaUrl
             // 
-            btnHamtaUrl.Location = new Point(524, 103);
+            btnHamtaUrl.Location = new Point(525, 104);
             btnHamtaUrl.Name = "btnHamtaUrl";
             btnHamtaUrl.Size = new Size(75, 23);
             btnHamtaUrl.TabIndex = 4;
@@ -97,13 +100,13 @@
             tbNamn.Enabled = false;
             tbNamn.Location = new Point(44, 170);
             tbNamn.Name = "tbNamn";
-            tbNamn.Size = new Size(357, 23);
+            tbNamn.Size = new Size(355, 23);
             tbNamn.TabIndex = 5;
             // 
             // lblNamn
             // 
             lblNamn.AutoSize = true;
-            lblNamn.Location = new Point(44, 152);
+            lblNamn.Location = new Point(45, 153);
             lblNamn.Name = "lblNamn";
             lblNamn.Size = new Size(29, 15);
             lblNamn.TabIndex = 6;
@@ -112,7 +115,7 @@
             // lblAvsnitt
             // 
             lblAvsnitt.AutoSize = true;
-            lblAvsnitt.Location = new Point(665, 148);
+            lblAvsnitt.Location = new Point(668, 153);
             lblAvsnitt.Name = "lblAvsnitt";
             lblAvsnitt.Size = new Size(73, 15);
             lblAvsnitt.TabIndex = 8;
@@ -147,7 +150,7 @@
             // btnPrenumerera
             // 
             btnPrenumerera.Font = new Font("Segoe UI", 19F);
-            btnPrenumerera.Location = new Point(416, 400);
+            btnPrenumerera.Location = new Point(417, 403);
             btnPrenumerera.Name = "btnPrenumerera";
             btnPrenumerera.Size = new Size(324, 85);
             btnPrenumerera.TabIndex = 11;
@@ -157,8 +160,8 @@
             // 
             // cbValjKategori
             // 
+            cbValjKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cbValjKategori.FormattingEnabled = true;
-            cbValjKategori.Items.AddRange(new object[] { "Humor", "Nöje", "Sport", "Dokumentär" });
             cbValjKategori.Location = new Point(417, 170);
             cbValjKategori.Name = "cbValjKategori";
             cbValjKategori.Size = new Size(211, 23);
@@ -167,7 +170,7 @@
             // lblValjKategori
             // 
             lblValjKategori.AutoSize = true;
-            lblValjKategori.Location = new Point(417, 152);
+            lblValjKategori.Location = new Point(417, 153);
             lblValjKategori.Name = "lblValjKategori";
             lblValjKategori.Size = new Size(51, 15);
             lblValjKategori.TabIndex = 13;
@@ -176,7 +179,7 @@
             // lbEgetNamn
             // 
             lbEgetNamn.AutoSize = true;
-            lbEgetNamn.Location = new Point(45, 490);
+            lbEgetNamn.Location = new Point(45, 491);
             lbEgetNamn.Name = "lbEgetNamn";
             lbEgetNamn.Size = new Size(64, 15);
             lbEgetNamn.TabIndex = 14;
@@ -184,10 +187,27 @@
             // 
             // tbEgetNamn
             // 
-            tbEgetNamn.Location = new Point(45, 508);
+            tbEgetNamn.Location = new Point(44, 508);
             tbEgetNamn.Name = "tbEgetNamn";
-            tbEgetNamn.Size = new Size(350, 23);
+            tbEgetNamn.Size = new Size(355, 23);
             tbEgetNamn.TabIndex = 15;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(192, 192, 255);
+            panel1.Controls.Add(lblRubrik);
+            panel1.Controls.Add(lbEgetNamn);
+            panel1.Controls.Add(btnPrenumerera);
+            panel1.Controls.Add(lblUrl);
+            panel1.Controls.Add(lblValjKategori);
+            panel1.Controls.Add(lblNamn);
+            panel1.Controls.Add(lblAvsnitt);
+            panel1.Controls.Add(btnTillbaka);
+            panel1.Controls.Add(btnHamtaUrl);
+            panel1.Location = new Point(-1, -1);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(768, 565);
+            panel1.TabIndex = 16;
             // 
             // LaggTillPoddForm
             // 
@@ -195,23 +215,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(762, 558);
             Controls.Add(tbEgetNamn);
-            Controls.Add(lbEgetNamn);
-            Controls.Add(lblValjKategori);
             Controls.Add(cbValjKategori);
-            Controls.Add(btnPrenumerera);
             Controls.Add(rtbAvsnittInfo);
             Controls.Add(lbAllaAvsnitt);
-            Controls.Add(lblAvsnitt);
             Controls.Add(tbAntalAvsnitt);
-            Controls.Add(lblNamn);
             Controls.Add(tbNamn);
-            Controls.Add(btnHamtaUrl);
-            Controls.Add(lblUrl);
             Controls.Add(tbUrl);
-            Controls.Add(btnTillbaka);
-            Controls.Add(lblRubrik);
+            Controls.Add(panel1);
             Name = "LaggTillPoddForm";
             Text = "Form2";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -234,5 +248,6 @@
         private Label lblValjKategori;
         private Label lbEgetNamn;
         private TextBox tbEgetNamn;
+        private Panel panel1;
     }
 }

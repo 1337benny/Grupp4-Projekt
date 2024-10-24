@@ -14,57 +14,68 @@ namespace BLL
         
         }
 
-        public void laggTillPodcast(int podAntalAvsnitt, string podNamn, string podUrl, string podEgetNamn)
-        {
-            // Skapa en ny podcast
-            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl, podEgetNamn);
+        //public void laggTillPodcast(Podcast nyPodcast)
+        //{
+            
 
-            // Skapa en instans av den generiska serialiseraren
-            GeneriskSerialiserare<Podcast> enGeneriskSerialiserare = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
+        //    // Skapa en instans av den generiska serialiseraren
+        //    GeneriskSerialiserare<Podcast> enGeneriskSerialiserare = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
 
-            // Hämta den befintliga podcast-listan (eller en ny om filen inte finns)
-            List<Podcast> podcastLista;
+        //    // Hämta den befintliga podcast-listan (eller en ny om filen inte finns)
+        //    List<Podcast> podcastLista;
 
-            try
-            {
-                podcastLista = enGeneriskSerialiserare.Deserialisera();
-            }
-            catch (FileNotFoundException)
-            {
-                // Om filen inte finns, skapa en ny lista
-                podcastLista = new List<Podcast>();
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
-                Console.WriteLine(ex.Message);
-                return;
-            }
+        //    try
+        //    {
+        //        podcastLista = enGeneriskSerialiserare.Deserialisera();
+        //    }
+        //    catch (FileNotFoundException)
+        //    {
+        //        // Om filen inte finns, skapa en ny lista
+        //        podcastLista = new List<Podcast>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
+        //        Console.WriteLine(ex.Message);
+        //        return;
+        //    }
 
-            // Lägg till den nya podcasten i listan
-            podcastLista.Add(nyPodcast);
+        //    // Lägg till den nya podcasten i listan
+        //    podcastLista.Add(nyPodcast);
 
-            // Serialisera listan tillbaka till XML-filen
-            enGeneriskSerialiserare.Serialisera(podcastLista);
-        }
+        //    // Serialisera listan tillbaka till XML-filen
+        //    enGeneriskSerialiserare.Serialisera(podcastLista);
+        //}
 
-        public List<Podcast> visaMinaPoddar()
-        {
-            GeneriskSerialiserare<Podcast> minaPoddar = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
+        //public List<Podcast> visaMinaPoddar()
+        //{
+        //    GeneriskSerialiserare<Podcast> minaPoddar = new GeneriskSerialiserare<Podcast>("podcastLista.xml");
 
-            List<Podcast> podcasts = minaPoddar.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista in i en lokal variabel
+        //    List<Podcast> podcasts = minaPoddar.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista in i en lokal variabel
 
             
-            return podcasts;
-        }
+        //    return podcasts;
+        //}
 
-        public void laggTillKategori(string kategoriNamn)
+
+
+
+
+
+
+
+        public Boolean laggTillKategori(string kategoriNamn)
         {
+
+            Boolean printaMeddelande = false;
+
             Kategori kategori = new Kategori(kategoriNamn);
 
             GeneriskSerialiserare<Kategori> enGeneriskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
 
             List<Kategori> kategoriLista;
+
+
 
             try
             {
@@ -79,14 +90,56 @@ namespace BLL
             {
                 //MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
                 Console.WriteLine(ex.Message);
-                return;
+                return printaMeddelande;
             }
 
+            Validering validering = new Validering();
+            Boolean kategorinFinns = validering.kollaOmKategoriRedanFinns(kategoriNamn, kategoriLista);
+
+            if (!kategorinFinns) { 
             // Lägg till den nya podcasten i listan
             kategoriLista.Add(kategori);
 
             // Serialisera listan tillbaka till XML-filen
             enGeneriskSerialiserare.Serialisera(kategoriLista);
+                
+            }
+            else
+            {
+                printaMeddelande = true;
+            }
+
+            return printaMeddelande;
+            
+        }
+
+        public List<Kategori> visaMinaKategorier()
+        {
+            GeneriskSerialiserare<Kategori> minaKategorier = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
+
+            List<Kategori> kategorierLista = minaKategorier.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista in i en lokal variabel
+
+
+            return kategorierLista;
+        }
+
+        public void laggTillPodcastIKategori(Podcast podcast, string kategoriNamn)
+        {
+            List<Kategori> kategoriLista = visaMinaKategorier();
+
+            foreach (Kategori kategori in kategoriLista)
+            {
+                if (kategori.Namn.Equals(kategoriNamn))
+                {
+                    List<Podcast> podcastLista = kategori.KategorinsPodcasts;
+                    podcastLista.Add(podcast);
+
+                }
+            }
+
+            GeneriskSerialiserare<Kategori> generiskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
+            generiskSerialiserare.Serialisera(kategoriLista);
+
         }
     }
 }
