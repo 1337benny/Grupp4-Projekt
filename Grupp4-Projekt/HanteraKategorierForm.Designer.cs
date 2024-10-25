@@ -30,7 +30,9 @@
         {
             label1 = new Label();
             lblMinaKategorier = new Label();
-            lvMinaPoddar = new ListView();
+            lvMinaKategorier = new ListView();
+            namn = new ColumnHeader();
+            antalPoddar = new ColumnHeader();
             lbPoddarIKategorin = new ListBox();
             label2 = new Label();
             btnRaderaKategori = new Button();
@@ -44,8 +46,6 @@
             label4 = new Label();
             btnTillbaka = new Button();
             panel2 = new Panel();
-            namn = new ColumnHeader();
-            antalPoddar = new ColumnHeader();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -70,15 +70,29 @@
             lblMinaKategorier.TabIndex = 2;
             lblMinaKategorier.Text = "Mina kategorier";
             // 
-            // lvMinaPoddar
+            // lvMinaKategorier
             // 
-            lvMinaPoddar.Columns.AddRange(new ColumnHeader[] { namn, antalPoddar });
-            lvMinaPoddar.Location = new Point(55, 107);
-            lvMinaPoddar.Name = "lvMinaPoddar";
-            lvMinaPoddar.Size = new Size(215, 312);
-            lvMinaPoddar.TabIndex = 4;
-            lvMinaPoddar.UseCompatibleStateImageBehavior = false;
-            lvMinaPoddar.View = View.Details;
+            lvMinaKategorier.Columns.AddRange(new ColumnHeader[] { namn, antalPoddar });
+            lvMinaKategorier.FullRowSelect = true;
+            lvMinaKategorier.GridLines = true;
+            lvMinaKategorier.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lvMinaKategorier.Location = new Point(55, 107);
+            lvMinaKategorier.MultiSelect = false;
+            lvMinaKategorier.Name = "lvMinaKategorier";
+            lvMinaKategorier.Size = new Size(224, 312);
+            lvMinaKategorier.TabIndex = 4;
+            lvMinaKategorier.UseCompatibleStateImageBehavior = false;
+            lvMinaKategorier.View = View.Details;
+            // 
+            // namn
+            // 
+            namn.Text = "Namn";
+            namn.Width = 130;
+            // 
+            // antalPoddar
+            // 
+            antalPoddar.Text = "Antal poddar";
+            antalPoddar.Width = 90;
             // 
             // lbPoddarIKategorin
             // 
@@ -202,16 +216,6 @@
             panel2.Size = new Size(547, 380);
             panel2.TabIndex = 13;
             // 
-            // namn
-            // 
-            namn.Text = "Namn";
-            namn.Width = 130;
-            // 
-            // antalPoddar
-            // 
-            antalPoddar.Text = "Antal poddar";
-            antalPoddar.Width = 90;
-            // 
             // HanteraKategorierForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -222,7 +226,7 @@
             Controls.Add(btnBytNamn);
             Controls.Add(btnRaderaKategori);
             Controls.Add(lbPoddarIKategorin);
-            Controls.Add(lvMinaPoddar);
+            Controls.Add(lvMinaKategorier);
             Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(panel2);
@@ -240,7 +244,7 @@
 
         private Label label1;
         private Label lblMinaKategorier;
-        private ListView lvMinaPoddar;
+        private ListView lvMinaKategorier;
         private ListBox lbPoddarIKategorin;
         private Label label2;
         private Button btnRaderaKategori;

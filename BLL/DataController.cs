@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DAL.Repository;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,9 @@ namespace BLL
 {
     public class DataController
     {
-        public DataController() { 
-        
+        IRepository<Kategori> KategoriRepository;
+        public DataController() {
+            this.KategoriRepository = new KategoriRepository();
         }
 
         //public void laggTillPodcast(Podcast nyPodcast)
@@ -71,43 +73,45 @@ namespace BLL
 
             Kategori kategori = new Kategori(kategoriNamn);
 
-            GeneriskSerialiserare<Kategori> enGeneriskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
+            KategoriRepository.LaggTill(kategori);
 
-            List<Kategori> kategoriLista;
+            //GeneriskSerialiserare<Kategori> enGeneriskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
+
+            //List<Kategori> kategoriLista;
 
 
 
-            try
-            {
-                kategoriLista = enGeneriskSerialiserare.Deserialisera();
-            }
-            catch (FileNotFoundException)
-            {
-                // Om filen inte finns, skapa en ny lista
-                kategoriLista = new List<Kategori>();
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
-                Console.WriteLine(ex.Message);
-                return printaMeddelande;
-            }
+            //try
+            //{
+            //    kategoriLista = enGeneriskSerialiserare.Deserialisera();
+            //}
+            //catch (FileNotFoundException)
+            //{
+            //    // Om filen inte finns, skapa en ny lista
+            //    kategoriLista = new List<Kategori>();
+            //}
+            //catch (Exception ex)
+            //{
+            //    //MessageBox.Show($"Ett fel inträffade vid läsning av filen: {ex.Message}");
+            //    Console.WriteLine(ex.Message);
+            //    return printaMeddelande;
+            //}
 
-            Validering validering = new Validering();
-            Boolean kategorinFinns = validering.kollaOmKategoriRedanFinns(kategoriNamn, kategoriLista);
+            //Validering validering = new Validering();
+            //Boolean kategorinFinns = validering.kollaOmKategoriRedanFinns(kategoriNamn, kategoriLista);
 
-            if (!kategorinFinns) { 
-            // Lägg till den nya podcasten i listan
-            kategoriLista.Add(kategori);
+            //if (!kategorinFinns) { 
+            //// Lägg till den nya podcasten i listan
+            //kategoriLista.Add(kategori);
 
-            // Serialisera listan tillbaka till XML-filen
-            enGeneriskSerialiserare.Serialisera(kategoriLista);
+            //// Serialisera listan tillbaka till XML-filen
+            //enGeneriskSerialiserare.Serialisera(kategoriLista);
                 
-            }
-            else
-            {
-                printaMeddelande = true;
-            }
+            //}
+            //else
+            //{
+            //    printaMeddelande = true;
+            //}
 
             return printaMeddelande;
             
@@ -115,30 +119,38 @@ namespace BLL
 
         public List<Kategori> visaMinaKategorier()
         {
-            GeneriskSerialiserare<Kategori> minaKategorier = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
+            //GeneriskSerialiserare<Kategori> minaKategorier = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
 
-            List<Kategori> kategorierLista = minaKategorier.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista in i en lokal variabel
+            //List<Kategori> kategorierLista = minaKategorier.Deserialisera();  // Använd Deserialisera() för att deserialisera en lista in i en lokal variabel
 
 
-            return kategorierLista;
+            return KategoriRepository.HamtaAlla();
         }
 
         public void laggTillPodcastIKategori(Podcast podcast, string kategoriNamn)
         {
-            List<Kategori> kategoriLista = visaMinaKategorier();
+            List<Kategori> kategoriLista = KategoriRepository.HamtaAlla();
 
+            Kategori objektet = null;
+            int objektetsIndex = 0;
             foreach (Kategori kategori in kategoriLista)
             {
                 if (kategori.Namn.Equals(kategoriNamn))
                 {
                     List<Podcast> podcastLista = kategori.KategorinsPodcasts;
                     podcastLista.Add(podcast);
-
+                    objektet = kategori;
+                     
                 }
+                //objektetsIndex++;
             }
 
-            GeneriskSerialiserare<Kategori> generiskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
-            generiskSerialiserare.Serialisera(kategoriLista);
+            objektetsIndex = kategoriLista.IndexOf(objektet);
+
+            KategoriRepository.Uppdatera(objektetsIndex, objektet);
+
+            //GeneriskSerialiserare<Kategori> generiskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
+            //generiskSerialiserare.Serialisera(kategoriLista);
 
         }
     }

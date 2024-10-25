@@ -19,6 +19,7 @@ namespace Grupp4_Projekt
         {
             InitializeComponent();
             visaMinaKategorier();
+            this.CenterToScreen();
         }
 
         private void btnTillbaka_Click(object sender, EventArgs e)
@@ -48,6 +49,9 @@ namespace Grupp4_Projekt
                 meddelande.visaMeddelande(this, "Kategorin '" + tbNyKategoriNamn.Text + "'  har lagts till!");
                 tbNyKategoriNamn.Text = "";
             }
+
+            lvMinaKategorier.Items.Clear();
+            visaMinaKategorier();
         }
 
 
@@ -76,7 +80,7 @@ namespace Grupp4_Projekt
 
                 string[] kategoriInfo = { kategorinsNamn, antalPoddarIKategorin.ToString()};
                 ListViewItem item = new ListViewItem(kategoriInfo);
-                lvMinaPoddar.Items.Add(item);
+                lvMinaKategorier.Items.Add(item);
                 antalPoddarIKategorin = 0;
             }
         }
