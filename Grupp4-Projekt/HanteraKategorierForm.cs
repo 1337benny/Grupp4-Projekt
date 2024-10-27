@@ -15,11 +15,14 @@ namespace Grupp4_Projekt
 {
     public partial class HanteraKategorierForm : Form
     {
+        private DataController DataController;
         public HanteraKategorierForm()
         {
             InitializeComponent();
             visaMinaKategorier();
             this.CenterToScreen();
+            this.DataController = new DataController();
+
         }
 
         private void btnTillbaka_Click(object sender, EventArgs e)
@@ -34,20 +37,27 @@ namespace Grupp4_Projekt
 
         private void btnSparaNyKategori_Click(object sender, EventArgs e)
         {
+
+            KontrollMeddelande meddelande = new KontrollMeddelande();
+
+            if (tbNyKategoriNamn.Text.Equals(""))
+            {
+                meddelande.visaMeddelande(this, "Vänligen fyll i ett kategori-namn innan du sparar.");
+                return;
+            }
+
+
             DataController dataController = new DataController();
             Boolean visaFelmeddelande = dataController.laggTillKategori(tbNyKategoriNamn.Text);
 
-            KontrollMeddelande meddelande = new KontrollMeddelande();
+            
 
             if (visaFelmeddelande)
             {
                 
                 meddelande.visaMeddelande(this, "Du har redan en kategori med detta namn.");
             }
-            else if (tbNyKategoriNamn.Text.Equals(""))
-            {
-                //Felmeddelande
-            }
+            
             else
             {
                 meddelande.visaMeddelande(this, "Kategorin '" + tbNyKategoriNamn.Text + "'  har lagts till!");
