@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,16 +12,19 @@ namespace DAL.Repository
     {
         GeneriskSerialiserare<Kategori> GeneriskSerialiserare;
         List<Kategori> KategoriLista;
+        
 
         public KategoriRepository()
         {
             GeneriskSerialiserare = new GeneriskSerialiserare<Kategori>("kategoriLista.xml");
             KategoriLista = new List<Kategori>();
+            
         }
 
         public List<Kategori> HamtaAlla()
         {
-            return GeneriskSerialiserare.Deserialisera();
+            KategoriLista = GeneriskSerialiserare.Deserialisera();
+            return KategoriLista;
         }
 
         public Kategori HamtaMedNamn(string namn)
@@ -50,7 +54,9 @@ namespace DAL.Repository
         {
             if (index >= 0)
             {
+                
                 KategoriLista[index] = uppdateradKategori;
+                Spara();
             }
             Spara();
         }

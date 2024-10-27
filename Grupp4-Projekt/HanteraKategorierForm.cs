@@ -42,7 +42,11 @@ namespace Grupp4_Projekt
             if (visaFelmeddelande)
             {
                 
-                meddelande.visaMeddelande(this, "Du har redan en kategori med detta namn");
+                meddelande.visaMeddelande(this, "Du har redan en kategori med detta namn.");
+            }
+            else if (tbNyKategoriNamn.Text.Equals(""))
+            {
+                //Felmeddelande
             }
             else
             {

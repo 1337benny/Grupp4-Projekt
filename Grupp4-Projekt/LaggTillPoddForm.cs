@@ -114,8 +114,10 @@ namespace Grupp4_Projekt
             Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl, podEgetNamn);
 
             //DataControllerObjekt.laggTillPodcast(nyPodcast);
-
+            
             DataControllerObjekt.laggTillPodcastIKategori(nyPodcast, kategori);
+
+            Debug.WriteLine("kategori: " + kategori);
 
             tillStartsidan();
         }
