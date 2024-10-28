@@ -17,13 +17,16 @@ namespace Models
         }
 
         //Konstruktor
-        public Podcast(int antalAvsnitt, string titel, string url, string namn) : base(titel, url, namn) 
+        public Podcast(int antalAvsnitt, List<Avsnitt> podcastensAvsnitt, string titel, string url, string namn) : base(titel, url, namn) 
         {
             AntalAvsnitt = antalAvsnitt;
+            PodcastensAvsnitt = podcastensAvsnitt;
         }
 
-       
+
 
         public int AntalAvsnitt { get; set; }
+
+        public List<Avsnitt> PodcastensAvsnitt { get; set; }
     }
 }

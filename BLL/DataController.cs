@@ -79,5 +79,51 @@ namespace BLL
             
 
         }
+
+        public void raderaKategori(string kategorinsNamn)
+        {
+            List<Kategori> kategoriLista = KategoriRepository.HamtaAlla();
+
+            var objektet = from kategori in kategoriLista
+                           where kategori.Namn.Equals(kategorinsNamn)
+                           select kategori;
+
+            int index = 0;
+            foreach (var objekt in objektet)
+            {
+                index = kategoriLista.IndexOf(objekt);
+            }
+
+            KategoriRepository.Radera(index);
+        }
+
+        public Boolean uppdateraKategoriNamn(string kategorinsNamn, string nyttNamn)
+        {
+            List<Kategori> kategoriLista = KategoriRepository.HamtaAlla();
+
+            if (Validering.kollaOmKategoriRedanFinns(nyttNamn, kategoriLista))
+            {
+                //Felmeddelande kategorin kan inte heta detta
+                return true;
+            }
+
+
+            var objektet = from kategori in kategoriLista
+                           where kategori.Namn.Equals(kategorinsNamn)
+                           select kategori;
+
+            Kategori uppdateradKategori = null;
+            int index = 0;
+
+            foreach (var objekt in objektet)
+            {
+                objekt.Namn = nyttNamn;
+                uppdateradKategori = objekt;
+                index = kategoriLista.IndexOf(objekt);
+            }
+
+            KategoriRepository.Uppdatera(index, uppdateradKategori);
+            return false;
+        }
     }
 }

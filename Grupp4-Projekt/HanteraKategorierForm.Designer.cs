@@ -83,6 +83,7 @@
             lvMinaKategorier.TabIndex = 4;
             lvMinaKategorier.UseCompatibleStateImageBehavior = false;
             lvMinaKategorier.View = View.Details;
+            lvMinaKategorier.Click += lvMinaKategorier_Click;
             // 
             // namn
             // 
@@ -121,6 +122,7 @@
             btnRaderaKategori.TabIndex = 7;
             btnRaderaKategori.Text = "Radera vald kategori";
             btnRaderaKategori.UseVisualStyleBackColor = true;
+            btnRaderaKategori.Click += btnRaderaKategori_Click;
             // 
             // btnBytNamn
             // 
@@ -130,6 +132,7 @@
             btnBytNamn.TabIndex = 8;
             btnBytNamn.Text = "Byt namn för vald kategori";
             btnBytNamn.UseVisualStyleBackColor = true;
+            btnBytNamn.Click += btnBytNamn_Click;
             // 
             // tbUppdateraNamn
             // 

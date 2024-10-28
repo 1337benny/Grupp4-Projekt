@@ -23,6 +23,7 @@ namespace Grupp4_Projekt
         private string podUrl;
         private int podAntalAvsnitt;
         private string podEgetNamn;
+        private List<Avsnitt> podcastensAvsnitt;
         public LaggTillPoddForm()
         {
             InitializeComponent();
@@ -49,6 +50,9 @@ namespace Grupp4_Projekt
 
         private void btnHamtaUrl_Click(object sender, EventArgs e)
         {
+            //Töm listan om det fanns avsnitt i den innan 
+            podcastensAvsnitt = new List<Avsnitt>();
+
             lbAllaAvsnitt.Items.Clear(); //Nollställer listan från föregående sökning
             rtbAvsnittInfo.Text = ""; //Nollställer avsnittrutan från föregående sökning
 
@@ -70,10 +74,18 @@ namespace Grupp4_Projekt
 
             tbAntalAvsnitt.Text = antalAvsnittInt.ToString(); //Sätter antalet avsnitt i textboxen
 
-            //Skriver ut titlarna på varje avsnitt
+            //Skriver ut titlarna på varje avsnitt och skapar nya avsnitt-objekt
             foreach (SyndicationItem item in feed.Items)
             {
                 lbAllaAvsnitt.Items.Add(item.Title.Text);
+
+                string avsnittNamn = item.Title.Text;
+                string avsnittBeskrivning = item.Summary.Text;
+
+                Avsnitt nyttAvsnitt = new Avsnitt(avsnittNamn, avsnittBeskrivning);
+
+                podcastensAvsnitt.Add(nyttAvsnitt);
+
             }
 
             podAntalAvsnitt = antalAvsnittInt;
@@ -93,12 +105,29 @@ namespace Grupp4_Projekt
             string avsnittBeskrivning = "";
             foreach (SyndicationItem item in feed.Items)
             {
+
                 if (item.Title.Text.Equals(valtAvsnittTitel))
                 {
-                    avsnittBeskrivning = item.Summary.Text;
+                    try
+                    {
+                        // Kontrollera om item.Summary är null innan vi försöker använda det
+                        if (item.Summary != null)
+                        {
+                            avsnittBeskrivning = item.Summary.Text;
+                        }
+                        else
+                        {
+                            avsnittBeskrivning = "Går inte att läsa beskrivningen"; // Sätt till en standardtext om Summary är null
+                        }
+                    }
+                    catch (Exception ex) // Du kan fånga andra typer av undantag här om det behövs
+                    {
+                        avsnittBeskrivning = "Går inte att läsa beskrivningen";
+                    }
                 }
 
                 rtbAvsnittInfo.Text = avsnittBeskrivning;
+
             }
 
 
@@ -111,7 +140,7 @@ namespace Grupp4_Projekt
             podEgetNamn = tbEgetNamn.Text;
             string kategori = cbValjKategori.SelectedItem.ToString();
             
-            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podNamn, podUrl, podEgetNamn);
+            Podcast nyPodcast = new Podcast(podAntalAvsnitt, podcastensAvsnitt, podNamn, podUrl, podEgetNamn);
 
             //DataControllerObjekt.laggTillPodcast(nyPodcast);
             

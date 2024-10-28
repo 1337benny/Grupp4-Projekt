@@ -80,16 +80,21 @@ namespace Grupp4_Projekt
 
         private void skapaStandardKategoriXml()
         {
-            DataController dataController = new DataController();
 
-            dataController.laggTillKategori("Humor");
-            dataController.laggTillKategori("Dokumentär");
-            dataController.laggTillKategori("Nöje");
-            dataController.laggTillKategori("Sport");
-            dataController.laggTillKategori("Fakta");
-            dataController.laggTillKategori("Utbildning");
-            dataController.laggTillKategori("Nyheter");
-            dataController.laggTillKategori("Fantasi");
+            if (!File.Exists("kategoriLista.xml"))
+            {
+                DataController dataController = new DataController();
+
+                dataController.laggTillKategori("Humor");
+                dataController.laggTillKategori("Dokumentär");
+                dataController.laggTillKategori("Nöje");
+                dataController.laggTillKategori("Sport");
+                dataController.laggTillKategori("Fakta");
+                dataController.laggTillKategori("Utbildning");
+                dataController.laggTillKategori("Nyheter");
+                dataController.laggTillKategori("Fantasi");
+            }
+                
         }
 
         private void btnAvsluta_Click(object sender, EventArgs e)
