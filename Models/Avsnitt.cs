@@ -12,21 +12,22 @@ namespace Models
         public Avsnitt() { }
         
         public Avsnitt(string titel, string beskrivning) {
-            if (titel != null)
+            if (!string.IsNullOrWhiteSpace(titel))
             {
                 Titel = titel;
             }
             else
             {
-                Titel = "Okänt avsnitt-titel";
+                Titel = "Ingen titel finns";
             }
-            if (beskrivning != null)
+
+            if (!string.IsNullOrWhiteSpace(beskrivning))
             {
                 Beskrivning = beskrivning;
             }
             else
             {
-                Beskrivning = "Okänd beskrivning";
+                Beskrivning = "Ingen beskrivning finns";
             }
             
         

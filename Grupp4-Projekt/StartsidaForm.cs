@@ -94,12 +94,20 @@ namespace Grupp4_Projekt
                 dataController.laggTillKategori("Nyheter");
                 dataController.laggTillKategori("Fantasi");
             }
-                
+
         }
 
         private void btnAvsluta_Click(object sender, EventArgs e)
         {
             tillbakaKnapp();
+        }
+
+        private void btnHanteraMinaPoddar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form hanteraPoddarForm = new HanteraPodcastForm();
+            hanteraPoddarForm.ShowDialog();
+            this.Close();
         }
     }
 }

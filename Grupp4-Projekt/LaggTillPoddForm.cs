@@ -24,12 +24,14 @@ namespace Grupp4_Projekt
         private int podAntalAvsnitt;
         private string podEgetNamn;
         private List<Avsnitt> podcastensAvsnitt;
+        private KontrollMeddelande meddelande;
+
         public LaggTillPoddForm()
         {
             InitializeComponent();
             this.CenterToScreen();
             DataControllerObjekt = new DataController();
-
+            meddelande = new KontrollMeddelande();
             fyllComboboxKategorier();
         }
         private DataController DataControllerObjekt { get; set; }
@@ -50,16 +52,47 @@ namespace Grupp4_Projekt
 
         private void btnHamtaUrl_Click(object sender, EventArgs e)
         {
+            
+
+
             //Töm listan om det fanns avsnitt i den innan 
             podcastensAvsnitt = new List<Avsnitt>();
 
             lbAllaAvsnitt.Items.Clear(); //Nollställer listan från föregående sökning
             rtbAvsnittInfo.Text = ""; //Nollställer avsnittrutan från föregående sökning
 
+            if (string.IsNullOrEmpty(tbUrl.Text))
+            {
+                meddelande.visaMeddelande(this, "Vänligen fyll i en URL.");
+                return;
+            }
+
             string sokUrl = tbUrl.Text; //lagrar url i en variabel string
 
+            SyndicationFeed feed = null;
+            try
+            {
+                feed = XmlHanterare.hamtaUrl(sokUrl);
+            }
+            catch (FileNotFoundException ex)
+            {
+                meddelande.visaMeddelande(this, "Kunde inte hämta angiven URL.\n\nVänligen ange en korrekt RSS-länk.");
+                tbUrl.Text = string.Empty;
+                return;
+            }
+            catch (XmlException ex)
+            {
+                meddelande.visaMeddelande(this, "Kunde inte hämta angiven URL.\n\nVänligen ange en korrekt RSS-länk.");
+                tbUrl.Text = string.Empty;
+                return;
+            }
+            catch(Exception ex) 
+            {
+                meddelande.visaMeddelande(this, "Oväntat fel");
+                tbUrl.Text = string.Empty;
+                return;
+            }
 
-            SyndicationFeed feed = XmlHanterare.hamtaUrl(sokUrl);
 
 
             tbNamn.Text = feed.Title.Text; //sätter flödets titel i textboxen
@@ -139,7 +172,13 @@ namespace Grupp4_Projekt
         {
             podEgetNamn = tbEgetNamn.Text;
             string kategori = cbValjKategori.SelectedItem.ToString();
-            
+
+            if (podAntalAvsnitt == 0)
+            {
+                meddelande.visaMeddelande(this, "Vänligen hämta en URL innan du prenumererar!");
+                return;
+            }
+
             Podcast nyPodcast = new Podcast(podAntalAvsnitt, podcastensAvsnitt, podNamn, podUrl, podEgetNamn);
 
             //DataControllerObjekt.laggTillPodcast(nyPodcast);

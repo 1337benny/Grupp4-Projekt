@@ -80,6 +80,7 @@
             btnHanteraMinaPoddar.TabIndex = 3;
             btnHanteraMinaPoddar.Text = "Hantera mina poddar";
             btnHanteraMinaPoddar.UseVisualStyleBackColor = true;
+            btnHanteraMinaPoddar.Click += btnHanteraMinaPoddar_Click;
             // 
             // btnHanteraKategorier
             // 
