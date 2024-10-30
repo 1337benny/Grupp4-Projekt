@@ -125,5 +125,10 @@ namespace BLL
             KategoriRepository.Uppdatera(index, uppdateradKategori);
             return false;
         }
+
+        public void uppdateraPodcast(int index, Kategori kategori)
+        {
+            KategoriRepository.Uppdatera(index, kategori);
+        }
     }
 }

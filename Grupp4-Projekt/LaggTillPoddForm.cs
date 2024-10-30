@@ -25,6 +25,7 @@ namespace Grupp4_Projekt
         private string podEgetNamn;
         private List<Avsnitt> podcastensAvsnitt;
         private KontrollMeddelande meddelande;
+        private Validering validering;
 
         public LaggTillPoddForm()
         {
@@ -32,6 +33,7 @@ namespace Grupp4_Projekt
             this.CenterToScreen();
             DataControllerObjekt = new DataController();
             meddelande = new KontrollMeddelande();
+            validering = new Validering();
             fyllComboboxKategorier();
         }
         private DataController DataControllerObjekt { get; set; }
@@ -111,9 +113,24 @@ namespace Grupp4_Projekt
             foreach (SyndicationItem item in feed.Items)
             {
                 lbAllaAvsnitt.Items.Add(item.Title.Text);
+                string avsnittNamn = "";
+                string avsnittBeskrivning = "";
 
-                string avsnittNamn = item.Title.Text;
-                string avsnittBeskrivning = item.Summary.Text;
+                avsnittNamn = item.Title.Text;
+
+                try
+                {
+                    avsnittBeskrivning = item.Summary != null ? item.Summary.Text : "";
+                }
+                catch (NullReferenceException ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                
 
                 Avsnitt nyttAvsnitt = new Avsnitt(avsnittNamn, avsnittBeskrivning);
 
@@ -176,6 +193,14 @@ namespace Grupp4_Projekt
             if (podAntalAvsnitt == 0)
             {
                 meddelande.visaMeddelande(this, "Vänligen hämta en URL innan du prenumererar!");
+                return;
+            }
+
+            List<Kategori> kategoriLista = DataControllerObjekt.visaMinaKategorier();
+
+            if (validering.kollaOmPodcastRedanFinns(podUrl, kategoriLista)) 
+            {
+                meddelande.visaMeddelande(this, "Du prenumererar redan på denna podcast.");
                 return;
             }
 

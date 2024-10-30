@@ -114,7 +114,6 @@ namespace Grupp4_Projekt
                 DialogResult dialogResult = meddelande.alternativMeddelande(this, "Är du säker på att du vill ta bort kategorin: " + kategorinsNamn + "? \n\n Du kommer även ta bort alla poddar i kategorin.", "Radera kategori?");
 
 
-
                 if (dialogResult == DialogResult.Yes)
                 {
                     DataController.raderaKategori(kategorinsNamn);
@@ -172,9 +171,6 @@ namespace Grupp4_Projekt
             meddelande.visaMeddelande(this, "Du har uppdaterat kategorins namn!");
             visaMinaKategorier();
             tbUppdateraNamn.Text = "";
-
-
-
 
         }
 

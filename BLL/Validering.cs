@@ -27,5 +27,25 @@ namespace BLL
 
             
         }
+
+        public Boolean kollaOmPodcastRedanFinns(string sokUrl, List<Kategori> kategoriLista)
+        {
+            bool podcastFinns = false;
+
+            foreach (Kategori kategori in kategoriLista)
+            {
+                List<Podcast> podcastLista = kategori.KategorinsPodcasts;
+
+                foreach (Podcast podcast in podcastLista)
+                {
+                    if (podcast.Url.Equals(sokUrl, StringComparison.OrdinalIgnoreCase))
+                    {
+                        podcastFinns = true;
+                    }
+                }
+            }
+
+            return podcastFinns;
+        }
     }
 }

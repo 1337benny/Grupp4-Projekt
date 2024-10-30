@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,11 @@ namespace Grupp4_Projekt
 {
     public partial class StartsidaForm : Form, IFormInterface
     {
+        private DataController Controller;
         public StartsidaForm()
         {
             InitializeComponent();
+            Controller = new DataController();
             centreraForm();
             visaAllaMinaPoddar();
             skapaStandardKategoriXml();
@@ -48,9 +51,7 @@ namespace Grupp4_Projekt
         {
 
 
-            DataController podcastController = new DataController();
-
-            List<Kategori> kategorier = podcastController.visaMinaKategorier();
+            List<Kategori> kategorier = Controller.visaMinaKategorier();
             foreach (Kategori kategori in kategorier) //Loopa igenom alla Podcast objekt i den lokala listan
             {
 
@@ -83,16 +84,16 @@ namespace Grupp4_Projekt
 
             if (!File.Exists("kategoriLista.xml"))
             {
-                DataController dataController = new DataController();
 
-                dataController.laggTillKategori("Humor");
-                dataController.laggTillKategori("Dokumentär");
-                dataController.laggTillKategori("Nöje");
-                dataController.laggTillKategori("Sport");
-                dataController.laggTillKategori("Fakta");
-                dataController.laggTillKategori("Utbildning");
-                dataController.laggTillKategori("Nyheter");
-                dataController.laggTillKategori("Fantasi");
+
+                Controller.laggTillKategori("Humor");
+                Controller.laggTillKategori("Dokumentär");
+                Controller.laggTillKategori("Nöje");
+                Controller.laggTillKategori("Sport");
+                Controller.laggTillKategori("Fakta");
+                Controller.laggTillKategori("Utbildning");
+                Controller.laggTillKategori("Nyheter");
+                Controller.laggTillKategori("Fantasi");
             }
 
         }
@@ -108,6 +109,57 @@ namespace Grupp4_Projekt
             Form hanteraPoddarForm = new HanteraPodcastForm();
             hanteraPoddarForm.ShowDialog();
             this.Close();
+        }
+
+        private void lvMinaPoddar_Click(object sender, EventArgs e)
+        {
+            lbAvsnitt.Items.Clear();
+            rtbBeskrivning.Text = string.Empty;
+
+            ListViewItem item = lvMinaPoddar.SelectedItems[0];
+            string titel = item.SubItems[1].Text;
+
+
+            List<Kategori> kategoriLista = Controller.visaMinaKategorier();
+
+            foreach (Kategori kategori in kategoriLista)
+            {
+                foreach (Podcast podcast in kategori.KategorinsPodcasts)
+                {
+                    if (podcast.Titel.Equals(titel))
+                    {
+                        foreach (Avsnitt avsnitt in podcast.PodcastensAvsnitt)
+                        {
+                            lbAvsnitt.Items.Add(avsnitt.Titel);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void lbAvsnitt_Click(object sender, EventArgs e)
+        {
+            rtbBeskrivning.Text = string.Empty;
+
+            string avsnittNamn = lbAvsnitt.SelectedItem.ToString();
+
+            List<Kategori> kategoriLista = Controller.visaMinaKategorier();
+
+            foreach (Kategori kategori in kategoriLista)
+            {
+                foreach (Podcast podcast in kategori.KategorinsPodcasts)
+                {
+                    
+                      foreach (Avsnitt avsnitt in podcast.PodcastensAvsnitt)
+                      {
+                            if (avsnitt.Titel.Equals(avsnittNamn))
+                        {
+                            rtbBeskrivning.Text = avsnitt.Beskrivning;
+                        }
+                      }
+                    
+                }
+            }
         }
     }
 }

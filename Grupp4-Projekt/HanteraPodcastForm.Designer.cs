@@ -42,6 +42,7 @@
             Namn = new ColumnHeader();
             Titel = new ColumnHeader();
             Kategori = new ColumnHeader();
+            Url = new ColumnHeader();
             lblRubrik = new Label();
             btnTillbaka = new Button();
             panel1.SuspendLayout();
@@ -71,7 +72,7 @@
             panel2.Controls.Add(tbNyttNamn);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(488, 88);
+            panel2.Location = new Point(603, 85);
             panel2.Name = "panel2";
             panel2.Size = new Size(330, 204);
             panel2.TabIndex = 5;
@@ -93,6 +94,7 @@
             btnSparaAndringar.TabIndex = 8;
             btnSparaAndringar.Text = "Spara ändringar";
             btnSparaAndringar.UseVisualStyleBackColor = true;
+            btnSparaAndringar.Click += btnSparaAndringar_Click;
             // 
             // cbValjKategori
             // 
@@ -139,23 +141,24 @@
             // 
             // btnRaderaPodcast
             // 
-            btnRaderaPodcast.Location = new Point(488, 393);
+            btnRaderaPodcast.Location = new Point(603, 393);
             btnRaderaPodcast.Name = "btnRaderaPodcast";
             btnRaderaPodcast.Size = new Size(213, 43);
             btnRaderaPodcast.TabIndex = 3;
             btnRaderaPodcast.Text = "Radera vald podcast";
             btnRaderaPodcast.UseVisualStyleBackColor = true;
+            btnRaderaPodcast.Click += btnRaderaPodcast_Click;
             // 
             // lvMinaPoddar
             // 
-            lvMinaPoddar.Columns.AddRange(new ColumnHeader[] { Namn, Titel, Kategori });
+            lvMinaPoddar.Columns.AddRange(new ColumnHeader[] { Namn, Titel, Kategori, Url });
             lvMinaPoddar.FullRowSelect = true;
             lvMinaPoddar.GridLines = true;
             lvMinaPoddar.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             lvMinaPoddar.Location = new Point(48, 85);
             lvMinaPoddar.MultiSelect = false;
             lvMinaPoddar.Name = "lvMinaPoddar";
-            lvMinaPoddar.Size = new Size(414, 351);
+            lvMinaPoddar.Size = new Size(524, 351);
             lvMinaPoddar.TabIndex = 2;
             lvMinaPoddar.UseCompatibleStateImageBehavior = false;
             lvMinaPoddar.View = View.Details;
@@ -175,6 +178,11 @@
             // 
             Kategori.Text = "Kategori";
             Kategori.Width = 110;
+            // 
+            // Url
+            // 
+            Url.Text = "Url";
+            Url.Width = 110;
             // 
             // lblRubrik
             // 
@@ -229,5 +237,6 @@
         private ComboBox cbValjKategori;
         private Label label3;
         private TextBox tbNyttNamn;
+        private ColumnHeader Url;
     }
 }
