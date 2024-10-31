@@ -23,7 +23,7 @@ namespace DAL.Repository
 
         public List<Kategori> HamtaAlla()
         {
-            KategoriLista = GeneriskSerialiserare.Deserialisera();
+            KategoriLista = GeneriskSerialiserare.Deserialisera().GetAwaiter().GetResult();
             return KategoriLista;
         }
 
@@ -31,45 +31,47 @@ namespace DAL.Repository
         {
             Kategori kategori = null;
 
-            foreach (Kategori objekt in GeneriskSerialiserare.Deserialisera())
+            foreach (Kategori objekt in GeneriskSerialiserare.Deserialisera().GetAwaiter().GetResult())
             {
                 if (objekt.Namn.Equals(namn))
                 {
                     kategori = objekt;
+                    break;
                 }
             }
 
             return kategori;
         }
 
-
         public void LaggTill(Kategori kategori)
         {
-            
             KategoriLista.Add(kategori);
             Spara();
         }
 
         public void Uppdatera(int index, Kategori uppdateradKategori)
         {
-            if (index >= 0)
+            if (index >= 0 && index < KategoriLista.Count)
             {
-                
                 KategoriLista[index] = uppdateradKategori;
                 Spara();
             }
-            Spara();
         }
 
         public void Radera(int index)
         {
-            KategoriLista.RemoveAt(index);
-            Spara();
+            if (index >= 0 && index < KategoriLista.Count)
+            {
+                KategoriLista.RemoveAt(index);
+                Spara();
+            }
         }
 
         public void Spara()
         {
-            GeneriskSerialiserare.Serialisera(KategoriLista);
+            GeneriskSerialiserare.Serialisera(KategoriLista).GetAwaiter().GetResult();
         }
+
+
     }
 }

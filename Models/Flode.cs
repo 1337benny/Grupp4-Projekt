@@ -25,5 +25,10 @@ namespace Models
 
         public string Namn { get; set; }
 
+        public virtual string GetTitel()
+        {
+            return Titel;
+        }
+
     }
 }

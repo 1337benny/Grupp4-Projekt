@@ -13,7 +13,7 @@ using Models;
 
 namespace Grupp4_Projekt
 {
-    public partial class StartsidaForm : Form, IFormInterface
+    public partial class StartsidaForm : Form
     {
         private DataController Controller;
         public StartsidaForm()
@@ -23,7 +23,7 @@ namespace Grupp4_Projekt
             centreraForm();
             visaAllaMinaPoddar();
             skapaStandardKategoriXml();
-
+            fyllComboboxMedKategorier();
 
         }
 
@@ -49,7 +49,9 @@ namespace Grupp4_Projekt
 
         private void visaAllaMinaPoddar()
         {
-
+            lvMinaPoddar.Items.Clear();
+            rtbBeskrivning.Text = string.Empty;
+            lbAvsnitt.Items.Clear();
 
             List<Kategori> kategorier = Controller.visaMinaKategorier();
             foreach (Kategori kategori in kategorier) //Loopa igenom alla Podcast objekt i den lokala listan
@@ -149,17 +151,61 @@ namespace Grupp4_Projekt
             {
                 foreach (Podcast podcast in kategori.KategorinsPodcasts)
                 {
-                    
-                      foreach (Avsnitt avsnitt in podcast.PodcastensAvsnitt)
-                      {
-                            if (avsnitt.Titel.Equals(avsnittNamn))
+
+                    foreach (Avsnitt avsnitt in podcast.PodcastensAvsnitt)
+                    {
+                        if (avsnitt.Titel.Equals(avsnittNamn))
                         {
                             rtbBeskrivning.Text = avsnitt.Beskrivning;
                         }
-                      }
-                    
+                    }
+
                 }
             }
+        }
+
+        private void cbFiltreraPaKategori_SelectedValueChanged(object sender, EventArgs e)
+        {
+            lvMinaPoddar.Items.Clear();
+            lbAvsnitt.Items.Clear();
+            rtbBeskrivning.Text = string.Empty;
+            string kategoriNamn = cbFiltreraPaKategori.SelectedItem.ToString();
+
+
+            List<Kategori> kategoriLista = Controller.visaMinaKategorier();
+
+            foreach (Kategori kategori in kategoriLista)
+            {
+                if (kategori.Namn.Equals(kategoriNamn))
+                {
+                    foreach (Podcast podcast in kategori.KategorinsPodcasts)
+                    {
+                        string[] podInfo = { podcast.Namn, podcast.Titel, kategori.Namn, podcast.AntalAvsnitt.ToString() };
+                        ListViewItem item = new ListViewItem(podInfo);
+                        lvMinaPoddar.Items.Add(item);
+                    }
+
+                }
+            }
+
+
+        }
+
+        public void fyllComboboxMedKategorier()
+        {
+            cbFiltreraPaKategori.Items.Clear();
+
+            List<Kategori> kategoriLista = Controller.visaMinaKategorier();
+
+            foreach (Kategori kategori in kategoriLista)
+            {
+                cbFiltreraPaKategori.Items.Add(kategori.Namn);
+            }
+        }
+
+        private void btnAterstall_Click(object sender, EventArgs e)
+        {
+            visaAllaMinaPoddar();
         }
     }
 }

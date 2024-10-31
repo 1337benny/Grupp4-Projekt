@@ -17,7 +17,7 @@ namespace Grupp4_Projekt
             
         }
 
-        public DialogResult alternativMeddelande(Form form, string titel, string meddelande)
+        public DialogResult visaMeddelande(Form form, string titel, string meddelande)
         {
             DialogResult resultat = MessageBox.Show(form, titel, meddelande, MessageBoxButtons.YesNo);
             return resultat;

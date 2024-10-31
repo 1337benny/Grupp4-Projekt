@@ -18,34 +18,35 @@ namespace DAL
 
         public string FilNamn { get; set; }
 
-       
 
-        public void Serialisera(List<T> enLista)
+        public async Task Serialisera(List<T> enLista)
         {
             XmlSerializer serialiserare = new XmlSerializer(typeof(List<T>));
-            using (FileStream strom = new FileStream(FilNamn, FileMode.Create, FileAccess.Write)) 
+            await using (FileStream strom = new FileStream(FilNamn, FileMode.Create, FileAccess.Write, FileShare.None, 4096, useAsync: true))
             {
                 serialiserare.Serialize(strom, enLista);
             }
         }
 
+        
 
 
 
-        public List<T> Deserialisera()
+        public async Task<List<T>> Deserialisera()
         {
-            if (!File.Exists(FilNamn)) // Kontrollera om filen finns
+            if (!File.Exists(FilNamn))
             {
-                return new List<T>(); // Returnera en tom lista om filen inte finns
+                return new List<T>();
             }
 
             XmlSerializer deserialiserare = new XmlSerializer(typeof(List<T>));
-            using (FileStream strom = new FileStream(FilNamn, FileMode.Open, FileAccess.Read))
+            await using (FileStream strom = new FileStream(FilNamn, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, useAsync: true))
             {
-                return (List<T>)deserialiserare.Deserialize(strom); // Returnera deserialiserad lista
+                return (List<T>)deserialiserare.Deserialize(strom);
             }
         }
 
+        
 
     }
 }

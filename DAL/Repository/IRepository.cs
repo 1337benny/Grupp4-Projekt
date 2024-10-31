@@ -9,11 +9,12 @@ namespace DAL.Repository
 {
     public interface IRepository<T>
     {
+
         List<T> HamtaAlla();
         T HamtaMedNamn(string namn);
-        void LaggTill (T objekt);
-        void Uppdatera (int index, T objekt);
-        void Radera (int index);
+        void LaggTill(T objekt);
+        void Uppdatera(int index, T objekt);
+        void Radera(int index);
         void Spara();
     }
 }

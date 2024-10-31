@@ -149,7 +149,7 @@ namespace Grupp4_Projekt
             string valtAvsnittTitel = lbAllaAvsnitt.SelectedItem.ToString();
             string sokUrl = podUrl;
 
-            //XmlReader urlLasare = XmlReader.Create(sokUrl);
+            
             SyndicationFeed feed = XmlHanterare.hamtaUrl(sokUrl);
 
             string avsnittBeskrivning = "";
@@ -167,10 +167,10 @@ namespace Grupp4_Projekt
                         }
                         else
                         {
-                            avsnittBeskrivning = "Går inte att läsa beskrivningen"; // Sätt till en standardtext om Summary är null
+                            avsnittBeskrivning = "Går inte att läsa beskrivningen"; 
                         }
                     }
-                    catch (Exception ex) // Du kan fånga andra typer av undantag här om det behövs
+                    catch (Exception ex) 
                     {
                         avsnittBeskrivning = "Går inte att läsa beskrivningen";
                     }

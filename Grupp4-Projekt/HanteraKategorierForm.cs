@@ -111,7 +111,7 @@ namespace Grupp4_Projekt
                 ListViewItem kategorin = lvMinaKategorier.SelectedItems[0];
                 string kategorinsNamn = kategorin.Text;
 
-                DialogResult dialogResult = meddelande.alternativMeddelande(this, "Är du säker på att du vill ta bort kategorin: " + kategorinsNamn + "? \n\n Du kommer även ta bort alla poddar i kategorin.", "Radera kategori?");
+                DialogResult dialogResult = meddelande.visaMeddelande(this, "Är du säker på att du vill ta bort kategorin: " + kategorinsNamn + "? \n\n Du kommer även ta bort alla poddar i kategorin.", "Radera kategori?");
 
 
                 if (dialogResult == DialogResult.Yes)

@@ -98,6 +98,7 @@
             // 
             // cbValjKategori
             // 
+            cbValjKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cbValjKategori.FormattingEnabled = true;
             cbValjKategori.Location = new Point(18, 114);
             cbValjKategori.Name = "cbValjKategori";

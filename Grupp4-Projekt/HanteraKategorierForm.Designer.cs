@@ -200,9 +200,9 @@
             // 
             // btnTillbaka
             // 
-            btnTillbaka.Location = new Point(871, 12);
+            btnTillbaka.Location = new Point(841, 12);
             btnTillbaka.Name = "btnTillbaka";
-            btnTillbaka.Size = new Size(75, 23);
+            btnTillbaka.Size = new Size(105, 42);
             btnTillbaka.TabIndex = 12;
             btnTillbaka.Text = "Tillbaka";
             btnTillbaka.UseVisualStyleBackColor = true;

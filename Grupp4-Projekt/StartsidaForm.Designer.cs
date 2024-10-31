@@ -40,12 +40,15 @@
             columnHeader3 = new ColumnHeader();
             btnAvsluta = new Button();
             panel1 = new Panel();
+            cbFiltreraPaKategori = new ComboBox();
+            label3 = new Label();
             rtbBeskrivning = new RichTextBox();
             label2 = new Label();
             label1 = new Label();
             lbAvsnitt = new ListBox();
             panel2 = new Panel();
             panel3 = new Panel();
+            btnAterstall = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -55,7 +58,7 @@
             // 
             lblRubrik.AutoSize = true;
             lblRubrik.Font = new Font("Segoe UI", 29F);
-            lblRubrik.Location = new Point(13, 93);
+            lblRubrik.Location = new Point(14, 132);
             lblRubrik.Name = "lblRubrik";
             lblRubrik.Size = new Size(271, 52);
             lblRubrik.TabIndex = 0;
@@ -108,7 +111,7 @@
             lvMinaPoddar.FullRowSelect = true;
             lvMinaPoddar.GridLines = true;
             lvMinaPoddar.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            lvMinaPoddar.Location = new Point(13, 148);
+            lvMinaPoddar.Location = new Point(14, 187);
             lvMinaPoddar.MultiSelect = false;
             lvMinaPoddar.Name = "lvMinaPoddar";
             lvMinaPoddar.Size = new Size(584, 290);
@@ -150,6 +153,9 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(btnAterstall);
+            panel1.Controls.Add(cbFiltreraPaKategori);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(rtbBeskrivning);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
@@ -160,12 +166,32 @@
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(-1, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(960, 508);
+            panel1.Size = new Size(977, 543);
             panel1.TabIndex = 9;
+            // 
+            // cbFiltreraPaKategori
+            // 
+            cbFiltreraPaKategori.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFiltreraPaKategori.FormattingEnabled = true;
+            cbFiltreraPaKategori.Location = new Point(333, 153);
+            cbFiltreraPaKategori.Name = "cbFiltreraPaKategori";
+            cbFiltreraPaKategori.Size = new Size(166, 23);
+            cbFiltreraPaKategori.TabIndex = 16;
+            cbFiltreraPaKategori.SelectedValueChanged += cbFiltreraPaKategori_SelectedValueChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.Location = new Point(333, 132);
+            label3.Name = "label3";
+            label3.Size = new Size(141, 21);
+            label3.TabIndex = 15;
+            label3.Text = "Filtrera på kategori";
             // 
             // rtbBeskrivning
             // 
-            rtbBeskrivning.Location = new Point(606, 329);
+            rtbBeskrivning.Location = new Point(616, 329);
             rtbBeskrivning.Name = "rtbBeskrivning";
             rtbBeskrivning.Size = new Size(329, 148);
             rtbBeskrivning.TabIndex = 14;
@@ -175,7 +201,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(603, 305);
+            label2.Location = new Point(616, 305);
             label2.Name = "label2";
             label2.Size = new Size(146, 21);
             label2.TabIndex = 13;
@@ -185,7 +211,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(603, 124);
+            label1.Location = new Point(616, 124);
             label1.Name = "label1";
             label1.Size = new Size(58, 21);
             label1.TabIndex = 11;
@@ -195,7 +221,7 @@
             // 
             lbAvsnitt.FormattingEnabled = true;
             lbAvsnitt.ItemHeight = 15;
-            lbAvsnitt.Location = new Point(603, 148);
+            lbAvsnitt.Location = new Point(616, 148);
             lbAvsnitt.Name = "lbAvsnitt";
             lbAvsnitt.Size = new Size(332, 154);
             lbAvsnitt.TabIndex = 10;
@@ -219,14 +245,24 @@
             panel3.Controls.Add(btnHanteraKategorier);
             panel3.Location = new Point(15, 12);
             panel3.Name = "panel3";
-            panel3.Size = new Size(454, 79);
+            panel3.Size = new Size(435, 79);
             panel3.TabIndex = 2;
+            // 
+            // btnAterstall
+            // 
+            btnAterstall.Location = new Point(505, 152);
+            btnAterstall.Name = "btnAterstall";
+            btnAterstall.Size = new Size(93, 23);
+            btnAterstall.TabIndex = 17;
+            btnAterstall.Text = "Återställ";
+            btnAterstall.UseVisualStyleBackColor = true;
+            btnAterstall.Click += btnAterstall_Click;
             // 
             // StartsidaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(957, 504);
+            ClientSize = new Size(969, 537);
             Controls.Add(panel1);
             Name = "StartsidaForm";
             Text = "Form2";
@@ -258,5 +294,8 @@
         private Panel panel3;
         private Label label2;
         private RichTextBox rtbBeskrivning;
+        private ComboBox cbFiltreraPaKategori;
+        private Label label3;
+        private Button btnAterstall;
     }
 }

@@ -100,8 +100,23 @@ namespace Grupp4_Projekt
                 return;
             }
 
+            ListViewItem item = null;
+            try
+            {
+                item = lvMinaPoddar.SelectedItems[0];
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                meddelande.visaMeddelande(this, "Vänligen markera vilken podd du vill ändra.");
+                return;
+            }
+            catch (Exception ex)
+            {
+                meddelande.visaMeddelande(this, "Vänligen markera vilken podd du vill ändra.");
+                return;
+            }
 
-            ListViewItem item = lvMinaPoddar.SelectedItems[0];
+            
             string url = item.SubItems[3].Text;
             string nyttNamn = tbNyttNamn.Text;
             string nyKategori = cbValjKategori.SelectedItem.ToString();
@@ -179,9 +194,23 @@ namespace Grupp4_Projekt
                 return;
             }
 
+            ListViewItem item = null;
+            try
+            {
+                item = lvMinaPoddar.SelectedItems[0];
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                meddelande.visaMeddelande(this, "Vänligen markera vilken podd du vill radera.");
+                return;
+            }
+            catch (Exception ex)
+            {
+                meddelande.visaMeddelande(this, "Vänligen markera vilken podd du vill radera.");
+                return;
+            }
 
-
-            ListViewItem item = lvMinaPoddar.SelectedItems[0];
+            
             string url = item.SubItems[3].Text;
 
 
@@ -209,7 +238,7 @@ namespace Grupp4_Projekt
             }
 
 
-            DialogResult dialogResult = meddelande.alternativMeddelande(this, "Är du säker på att du vill ta bort podcasten: " + titel + "?", "Radera kategori?");
+            DialogResult dialogResult = meddelande.visaMeddelande(this, "Är du säker på att du vill ta bort podcasten: " + titel + "?", "Radera kategori?");
 
 
             if (dialogResult == DialogResult.Yes)
