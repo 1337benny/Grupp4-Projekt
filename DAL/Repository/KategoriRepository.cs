@@ -10,8 +10,8 @@ namespace DAL.Repository
 {
     public class KategoriRepository : IRepository<Kategori>
     {
-        GeneriskSerialiserare<Kategori> GeneriskSerialiserare;
-        List<Kategori> KategoriLista;
+        public GeneriskSerialiserare<Kategori> GeneriskSerialiserare;
+        public List<Kategori> KategoriLista;
         
 
         public KategoriRepository()

@@ -20,19 +20,16 @@ namespace Grupp4_Projekt
         {
             InitializeComponent();
             Controller = new DataController();
-            centreraForm();
+            this.CenterToScreen();
             visaAllaMinaPoddar();
             skapaStandardKategoriXml();
             fyllComboboxMedKategorier();
 
         }
 
-        public void centreraForm()
-        {
-            this.CenterToScreen();
-        }
+       
 
-        public void tillbakaKnapp()
+        private void tillbakaKnapp()
         {
             this.Close();
         }
@@ -191,7 +188,7 @@ namespace Grupp4_Projekt
 
         }
 
-        public void fyllComboboxMedKategorier()
+        private void fyllComboboxMedKategorier()
         {
             cbFiltreraPaKategori.Items.Clear();
 

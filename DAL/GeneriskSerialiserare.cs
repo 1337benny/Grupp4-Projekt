@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace DAL
 {
     
-    internal class GeneriskSerialiserare<T>
+    public class GeneriskSerialiserare<T>
     {
         public GeneriskSerialiserare(string filNamn) { 
 

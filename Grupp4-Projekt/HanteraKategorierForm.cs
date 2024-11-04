@@ -18,14 +18,14 @@ namespace Grupp4_Projekt
     public partial class HanteraKategorierForm : Form
     {
         private DataController DataController;
-        private KontrollMeddelande meddelande = new KontrollMeddelande();
+        private KontrollMeddelande meddelande;
         public HanteraKategorierForm()
         {
             InitializeComponent();
             visaMinaKategorier();
             this.CenterToScreen();
             this.DataController = new DataController();
-
+            meddelande = new KontrollMeddelande();
         }
 
         private void btnTillbaka_Click(object sender, EventArgs e)
@@ -72,14 +72,7 @@ namespace Grupp4_Projekt
         }
 
 
-
-
-
-
-
-
-
-        public void visaMinaKategorier()
+        private void visaMinaKategorier()
         {
             lvMinaKategorier.Items.Clear();
 

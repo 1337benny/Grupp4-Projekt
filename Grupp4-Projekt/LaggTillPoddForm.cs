@@ -26,7 +26,7 @@ namespace Grupp4_Projekt
         private List<Avsnitt> podcastensAvsnitt;
         private KontrollMeddelande meddelande;
         private Validering validering;
-
+        private DataController DataControllerObjekt { get; set; }
         public LaggTillPoddForm()
         {
             InitializeComponent();
@@ -36,9 +36,9 @@ namespace Grupp4_Projekt
             validering = new Validering();
             fyllComboboxKategorier();
         }
-        private DataController DataControllerObjekt { get; set; }
+        
 
-        public void tillStartsidan()
+        private void tillStartsidan()
         {
             this.Hide();
             StartsidaForm startsida = new StartsidaForm();
@@ -206,7 +206,6 @@ namespace Grupp4_Projekt
 
             Podcast nyPodcast = new Podcast(podAntalAvsnitt, podcastensAvsnitt, podNamn, podUrl, podEgetNamn);
 
-            //DataControllerObjekt.laggTillPodcast(nyPodcast);
             
             DataControllerObjekt.laggTillPodcastIKategori(nyPodcast, kategori);
 

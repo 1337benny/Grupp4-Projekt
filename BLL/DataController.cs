@@ -12,12 +12,12 @@ namespace BLL
 {
     public class DataController
     {
-        IRepository<Kategori> KategoriRepository;
-        Validering Validering;
+        public IRepository<Kategori> KategoriRepository;
+        public Validering Validering;
 
         public DataController() {
             this.KategoriRepository = new KategoriRepository();
-            Validering = new Validering();
+            this.Validering = new Validering();
         }
 
         
@@ -66,7 +66,7 @@ namespace BLL
                     List<Podcast> podcastLista = kategori.KategorinsPodcasts;
                     podcastLista.Add(podcast);
                     objektet = kategori;
-                    //objektetsIndex = kategoriLista.IndexOf(objektet);
+                    
                     break;
                 }
                 objektetsIndex++;
