@@ -52,7 +52,7 @@ namespace Grupp4_Projekt
             tillStartsidan();
         }
 
-        private void btnHamtaUrl_Click(object sender, EventArgs e)
+        private async void btnHamtaUrl_Click(object sender, EventArgs e)
         {
             
 
@@ -74,7 +74,7 @@ namespace Grupp4_Projekt
             SyndicationFeed feed = null;
             try
             {
-                feed = XmlHanterare.hamtaUrl(sokUrl);
+                feed = await XmlHanterare.HamtaUrl(sokUrl);
             }
             catch (FileNotFoundException ex)
             {
@@ -144,13 +144,13 @@ namespace Grupp4_Projekt
 
         }
 
-        private void lbAllaAvsnitt_Click(object sender, EventArgs e)
+        private async void lbAllaAvsnitt_Click(object sender, EventArgs e)
         {
             string valtAvsnittTitel = lbAllaAvsnitt.SelectedItem.ToString();
             string sokUrl = podUrl;
 
             
-            SyndicationFeed feed = XmlHanterare.hamtaUrl(sokUrl);
+            SyndicationFeed feed = await XmlHanterare.HamtaUrl(sokUrl);
 
             string avsnittBeskrivning = "";
             foreach (SyndicationItem item in feed.Items)
